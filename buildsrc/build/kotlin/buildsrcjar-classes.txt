@@ -1,0 +1,1 @@
+D:\project\BaseProject\buildsrc\build\classes\kotlin\main\Dependencies.class;D:\project\BaseProject\buildsrc\build\classes\kotlin\main\Gradle.class;D:\project\BaseProject\buildsrc\build\classes\kotlin\main\Version.class
