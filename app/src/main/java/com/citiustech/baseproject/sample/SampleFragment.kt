@@ -5,6 +5,7 @@ import android.view.View
 import com.citiustech.baseproject.R
 import com.citiustech.baseproject.base.BaseFragment
 import com.citiustech.baseproject.databinding.FragmentSampleBinding
+import dagger.hilt.android.AndroidEntryPoint
 
 class SampleFragment : BaseFragment() {
     lateinit var binding: FragmentSampleBinding
