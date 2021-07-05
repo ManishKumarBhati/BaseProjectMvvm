@@ -1,6 +1,8 @@
 plugins {
     id("com.android.application")
     id("kotlin-android")
+    id("kotlin-kapt")
+    id("dagger.hilt.android.plugin")
 }
 
 android {
@@ -48,6 +50,8 @@ dependencies {
     implementation(Dependencies.Timber)
     implementation(Dependencies.Material)
     implementation(Dependencies.ConstraintLayout)
+    implementation(Hilt.Core)
+    kapt(Hilt.Compiler)
     testImplementation(Dependencies.Junit)
     androidTestImplementation(Dependencies.JunitTest)
     androidTestImplementation(Dependencies.EspressoCore)

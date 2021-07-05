@@ -10,6 +10,7 @@ object Version {
     const val KotlinVersion = "1.5.0"
     const val BuildGradle = "4.2.1"
     const val Timber = "4.7.1"
+    const val Hilt = "2.35"
 }
 
 object Dependencies {
@@ -22,10 +23,17 @@ object Dependencies {
     val JunitTest = "androidx.test.ext:junit:1.1.2"
     val EspressoCore = "androidx.test.espresso:espresso-core:3.3.0"
     val Gradle = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Version.KotlinVersion}"
-    val Timber  ="com.jakewharton.timber:timber:${Version.Timber}"
+    val Timber = "com.jakewharton.timber:timber:${Version.Timber}"
 }
 
 object Gradle {
     val Build = "com.android.tools.build:gradle:${Version.BuildGradle}"
     val Kotlin = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Version.KotlinVersion}"
+    val Hilt = "com.google.dagger:hilt-android-gradle-plugin:${Version.Hilt}"
+}
+
+object Hilt {
+    val Compiler = "com.google.dagger:hilt-android-compiler:${Version.Hilt}"
+    val Core = "com.google.dagger:hilt-android:${Version.Hilt}"
+
 }

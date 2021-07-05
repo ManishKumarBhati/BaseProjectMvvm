@@ -8,6 +8,7 @@ buildscript {
     dependencies {
         classpath(Gradle.Build)
         classpath(Gradle.Kotlin)
+        classpath(Gradle.Hilt)
     }
 }
 
@@ -15,7 +16,6 @@ allprojects {
     repositories {
         google()
         mavenCentral()
-        jcenter() // Warning: this repository is going to shut down soon
     }
 }
 
