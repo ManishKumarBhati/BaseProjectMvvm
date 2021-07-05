@@ -3,6 +3,7 @@ package com.citiustech.baseproject
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.citiustech.baseproject.databinding.ActivityMainBinding
+import com.citiustech.baseproject.sample.SampleFragment
 import timber.log.Timber
 
 class MainActivity : AppCompatActivity() {
@@ -11,6 +12,13 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        Timber.d(binding.tvText.text.toString())
+        setView()
     }
+    private fun setView() {
+        supportFragmentManager.beginTransaction()
+            .disallowAddToBackStack()
+            .replace(R.id.frame, SampleFragment.newInstance(),SampleFragment.TAG)
+            .commit()
+    }
+
 }
