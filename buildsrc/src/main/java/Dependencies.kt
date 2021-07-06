@@ -56,6 +56,7 @@ object OkHttp {
 object Room {
     const val Core = "androidx.room:room-runtime:${Version.Room}"
     const val Compiler = "androidx.room:room-compiler:${Version.Room}"
+    const val RxJava = "androidx.room:room-rxjava2:${Version.Room}"
 }
 object RxJava{
     const val Java="io.reactivex.rxjava2:rxjava:2.2.10"

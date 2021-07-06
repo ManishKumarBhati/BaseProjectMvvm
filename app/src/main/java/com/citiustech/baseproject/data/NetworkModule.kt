@@ -1,6 +1,9 @@
 package com.citiustech.baseproject.data
 
+import android.content.Context
 import android.util.Log
+import androidx.room.Room
+import com.citiustech.baseproject.data.db.RoomDB
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -47,5 +50,13 @@ object NetworkModule {
     @Singleton
     fun provideApiService(retrofit: Retrofit): ApiService {
         return retrofit.create(ApiService::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun provideAppDatabase(context: Context): RoomDB {
+        return Room.databaseBuilder(context, RoomDB::class.java, "test_app_db")
+            .fallbackToDestructiveMigration()
+            .build()
     }
 }

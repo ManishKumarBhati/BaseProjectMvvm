@@ -57,6 +57,7 @@ dependencies {
 
     //Room
     implementation(Room.Core)
+    implementation(Room.RxJava)
     kapt(Room.Compiler)
 
     //Retrofit
@@ -72,7 +73,6 @@ dependencies {
     //RxJava
     implementation(RxJava.Java)
     implementation(RxJava.Kotlin)
-//    implementation(RxJava.Relay)
     implementation(RxJava.Android)
 
     //UnitTest

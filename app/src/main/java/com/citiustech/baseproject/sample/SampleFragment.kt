@@ -17,7 +17,8 @@ import javax.inject.Inject
 class SampleFragment : BaseFragment() {
     lateinit var binding: FragmentSampleBinding
 
-    @Inject lateinit var api:ApiService
+    @Inject
+    lateinit var api: ApiService
 
     override fun getLayout(): Int {
         return R.layout.fragment_sample
@@ -26,7 +27,7 @@ class SampleFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
         binding = FragmentSampleBinding.bind(view)
-        if(isAdded)        api.getData()
+        api.getData()
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({ response ->
@@ -38,8 +39,5 @@ class SampleFragment : BaseFragment() {
 
     companion object {
         const val TAG = "SapmleFrag"
-        fun newInstance(): SampleFragment {
-            return SampleFragment()
-        }
     }
 }
