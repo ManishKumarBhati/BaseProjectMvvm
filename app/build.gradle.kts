@@ -50,8 +50,32 @@ dependencies {
     implementation(Dependencies.Timber)
     implementation(Dependencies.Material)
     implementation(Dependencies.ConstraintLayout)
+
+    //Hilt
     implementation(Hilt.Core)
     kapt(Hilt.Compiler)
+
+    //Room
+    implementation(Room.Core)
+    kapt(Room.Compiler)
+
+    //Retrofit
+    implementation(Retrofit.Core)
+    implementation(Retrofit.Moshi)
+    implementation(Retrofit.Adapter)
+
+    //okHttp
+    implementation(OkHttp.Core)
+    implementation(OkHttp.Logger)
+    implementation(OkHttp.Okio)
+
+    //RxJava
+    implementation(RxJava.Java)
+    implementation(RxJava.Kotlin)
+//    implementation(RxJava.Relay)
+    implementation(RxJava.Android)
+
+    //UnitTest
     testImplementation(Dependencies.Junit)
     androidTestImplementation(Dependencies.JunitTest)
     androidTestImplementation(Dependencies.EspressoCore)

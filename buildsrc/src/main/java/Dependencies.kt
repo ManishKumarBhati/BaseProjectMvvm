@@ -11,6 +11,10 @@ object Version {
     const val BuildGradle = "4.2.1"
     const val Timber = "4.7.1"
     const val Hilt = "2.35"
+    const val Retrofit = "2.6.0"
+    const val Room = "2.1.0"
+    const val OkHttp = "3.12.3"
+    const val OkIo = "1.17.4"
 }
 
 object Dependencies {
@@ -35,5 +39,29 @@ object Gradle {
 object Hilt {
     val Compiler = "com.google.dagger:hilt-android-compiler:${Version.Hilt}"
     val Core = "com.google.dagger:hilt-android:${Version.Hilt}"
+}
+
+object Retrofit {
+    const val Core = "com.squareup.retrofit2:retrofit:${Version.Retrofit}"
+    const val Adapter = "com.squareup.retrofit2:adapter-rxjava2:${Version.Retrofit}"
+    const val Moshi = "com.squareup.retrofit2:converter-moshi:2.4.0"
+}
+
+object OkHttp {
+    const val Okio = "com.squareup.okio:okio:${Version.OkIo}"
+    const val Core = "com.squareup.okhttp3:okhttp:${Version.OkHttp}"
+    const val Logger = "com.squareup.okhttp3:logging-interceptor:${Version.OkHttp}"
+}
+
+object Room {
+    const val Core = "androidx.room:room-runtime:${Version.Room}"
+    const val Compiler = "androidx.room:room-compiler:${Version.Room}"
+}
+object RxJava{
+    const val Java="io.reactivex.rxjava2:rxjava:2.2.10"
+    const val Kotlin="io.reactivex.rxjava2:rxkotlin:2.3.0"
+    const val Android="io.reactivex.rxjava2:rxandroid:2.1.1"
+    const val Relay= "com.jakewharton.rxrelay2:rxrelay:2.1.0"
+    const val Prefrence= "com.f2prateek.rx.preferences2:rx-preferences:2.0.0"
 
 }

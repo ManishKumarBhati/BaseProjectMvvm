@@ -7,9 +7,11 @@ import android.view.ViewGroup
 import androidx.annotation.LayoutRes
 import androidx.fragment.app.Fragment
 import dagger.hilt.android.AndroidEntryPoint
+import io.reactivex.disposables.CompositeDisposable
 
-@AndroidEntryPoint
 abstract class BaseFragment : Fragment() {
+    @JvmField
+    protected val disposable: CompositeDisposable = CompositeDisposable()
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
