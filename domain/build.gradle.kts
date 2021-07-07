@@ -40,13 +40,13 @@ android {
 dependencies {
 
     implementation(Dependencies.KotlinStd)
-    implementation(Dependencies.KtxCore)
+    implementation(Androidx.KtxCore)
     implementation(Dependencies.Timber)
 
     //UnitTest
-    testImplementation(Dependencies.Junit)
-    androidTestImplementation(Dependencies.JunitTest)
-    androidTestImplementation(Dependencies.EspressoCore)
+    testImplementation(UnitTest.Junit)
+    androidTestImplementation(UnitTest.JunitTest)
+    androidTestImplementation(UnitTest.EspressoCore)
 
     //RxJava
     implementation(RxJava.Java)

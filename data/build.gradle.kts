@@ -40,13 +40,13 @@ android {
 dependencies {
 
     implementation(Dependencies.KotlinStd)
-    implementation(Dependencies.KtxCore)
+    implementation(Androidx.KtxCore)
     implementation(Dependencies.Timber)
 
     //UnitTest
-    testImplementation(Dependencies.Junit)
-    androidTestImplementation(Dependencies.JunitTest)
-    androidTestImplementation(Dependencies.EspressoCore)
+//    testImplementation(Dependencies.Junit)
+//    androidTestImplementation(Dependencies.JunitTest)
+//    androidTestImplementation(Dependencies.EspressoCore)
 
     //Hilt
     implementation(Hilt.Core)
@@ -71,5 +71,6 @@ dependencies {
     implementation(RxJava.Java)
     implementation(RxJava.Kotlin)
     implementation(RxJava.Android)
+
     implementation(project(":domain"))
 }

@@ -45,11 +45,11 @@ android {
 
 dependencies {
     implementation(Dependencies.KotlinStd)
-    implementation(Dependencies.KtxCore)
-    implementation(Dependencies.AppCompat)
+    implementation(Androidx.KtxCore)
+    implementation(Androidx.AppCompat)
     implementation(Dependencies.Timber)
     implementation(Dependencies.Material)
-    implementation(Dependencies.ConstraintLayout)
+    implementation(Androidx.ConstraintLayout)
 
     //Hilt
     implementation(Hilt.Core)
@@ -76,9 +76,10 @@ dependencies {
     implementation(RxJava.Android)
 
     //UnitTest
-    testImplementation(Dependencies.Junit)
-    androidTestImplementation(Dependencies.JunitTest)
-    androidTestImplementation(Dependencies.EspressoCore)
+    testImplementation(UnitTest.Junit)
+    androidTestImplementation(UnitTest.JunitTest)
+    androidTestImplementation(UnitTest.EspressoCore)
+
     implementation(project(":domain"))
     implementation(project(":data"))
 }
