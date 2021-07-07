@@ -1,7 +1,6 @@
-package com.citiustech.baseproject.data.db
+package com.citiustech.data.db
 
 import androidx.room.*
-import com.squareup.moshi.Json
 import io.reactivex.Observable
 
 @Entity(tableName = "table_name")

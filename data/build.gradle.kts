@@ -1,5 +1,5 @@
 plugins {
-    id("com.android.application")
+    id("com.android.library")
     id("kotlin-android")
     id("kotlin-kapt")
     id("dagger.hilt.android.plugin")
@@ -10,13 +10,13 @@ android {
     buildToolsVersion = Version.BuildToolsVersion
 
     defaultConfig {
-        applicationId = "com.citiustech.baseproject"
         minSdkVersion(Version.MinSdk)
         targetSdkVersion(Version.TargetSdk)
         versionCode = Version.VersionCode
         versionName = Version.VersionName
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+//        consumerProguardFiles ="consumer-rules.pro"
     }
 
     buildTypes {
@@ -28,28 +28,25 @@ android {
             )
         }
     }
-
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
-
     kotlinOptions {
         jvmTarget = "1.8"
-    }
-
-    buildFeatures {
-        viewBinding = true
     }
 }
 
 dependencies {
+
     implementation(Dependencies.KotlinStd)
     implementation(Dependencies.KtxCore)
-    implementation(Dependencies.AppCompat)
     implementation(Dependencies.Timber)
-    implementation(Dependencies.Material)
-    implementation(Dependencies.ConstraintLayout)
+
+    //UnitTest
+    testImplementation(Dependencies.Junit)
+    androidTestImplementation(Dependencies.JunitTest)
+    androidTestImplementation(Dependencies.EspressoCore)
 
     //Hilt
     implementation(Hilt.Core)
@@ -74,11 +71,5 @@ dependencies {
     implementation(RxJava.Java)
     implementation(RxJava.Kotlin)
     implementation(RxJava.Android)
-
-    //UnitTest
-    testImplementation(Dependencies.Junit)
-    androidTestImplementation(Dependencies.JunitTest)
-    androidTestImplementation(Dependencies.EspressoCore)
     implementation(project(":domain"))
-    implementation(project(":data"))
 }

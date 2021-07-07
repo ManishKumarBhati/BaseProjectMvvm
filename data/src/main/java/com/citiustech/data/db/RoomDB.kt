@@ -1,4 +1,4 @@
-package com.citiustech.baseproject.data.db
+package com.citiustech.data.db
 
 import androidx.room.Database
 import androidx.room.RoomDatabase

@@ -1,9 +1,9 @@
-package com.citiustech.baseproject.data
+package com.citiustech.data
 
 import android.content.Context
 import android.util.Log
 import androidx.room.Room
-import com.citiustech.baseproject.data.db.RoomDB
+import com.citiustech.data.db.RoomDB
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

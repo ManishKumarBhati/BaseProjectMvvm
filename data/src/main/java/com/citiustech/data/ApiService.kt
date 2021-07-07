@@ -1,4 +1,4 @@
-package com.citiustech.baseproject.data
+package com.citiustech.data
 
 import io.reactivex.Observable
 import retrofit2.http.GET
