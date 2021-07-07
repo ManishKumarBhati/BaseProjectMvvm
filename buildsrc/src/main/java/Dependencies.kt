@@ -1,4 +1,3 @@
-import javax.swing.SpringLayout
 
 object Version {
     const val CompileSdk = 30
@@ -15,6 +14,8 @@ object Version {
     const val Room = "2.1.0"
     const val OkHttp = "3.12.3"
     const val OkIo = "1.17.4"
+    const val RxBinding = "4.0.0"
+    const val Groupie = "2.9.0"
 }
 
 object Dependencies {
@@ -58,11 +59,22 @@ object Room {
     const val Compiler = "androidx.room:room-compiler:${Version.Room}"
     const val RxJava = "androidx.room:room-rxjava2:${Version.Room}"
 }
-object RxJava{
-    const val Java="io.reactivex.rxjava2:rxjava:2.2.10"
-    const val Kotlin="io.reactivex.rxjava2:rxkotlin:2.3.0"
-    const val Android="io.reactivex.rxjava2:rxandroid:2.1.1"
-    const val Relay= "com.jakewharton.rxrelay2:rxrelay:2.1.0"
-    const val Prefrence= "com.f2prateek.rx.preferences2:rx-preferences:2.0.0"
 
+object RxJava {
+    const val Java = "io.reactivex.rxjava2:rxjava:2.2.10"
+    const val Kotlin = "io.reactivex.rxjava2:rxkotlin:2.3.0"
+    const val Android = "io.reactivex.rxjava2:rxandroid:2.1.1"
+    const val Prefrence = "com.f2prateek.rx.preferences2:rx-preferences:2.0.0"
+}
+
+object Binding {
+    const val AppCompat = "com.jakewharton.rxbinding4:rxbinding-appcompat:${Version.RxBinding}"
+    const val Material = "com.jakewharton.rxbinding4:rxbinding-material:${Version.RxBinding}"
+    const val Core = "com.jakewharton.rxbinding4:rxbinding-core:${Version.RxBinding}"
+}
+
+object Groupie {
+    const val Core = "com.xwray:groupie:${Version.Groupie}"
+    const val ViewBinding = "com.xwray:groupie-viewbinding:${Version.Groupie}"
+    const val Extension = "com.xwray:groupie-kotlin-android-extensions:${Version.Groupie}"
 }
