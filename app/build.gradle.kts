@@ -50,10 +50,19 @@ dependencies {
     implementation(Dependencies.Timber)
     implementation(Dependencies.Material)
     implementation(Androidx.ConstraintLayout)
+    implementation(Androidx.Fragment)
 
     //Hilt
     implementation(Hilt.Core)
     kapt(Hilt.Compiler)
+    implementation(Hilt.ViewModel)
+    kapt(Hilt.ViewModelCompiler)
+
+    //LifeCycle
+    implementation(LifeCycle.Core)
+    implementation(LifeCycle.ViewModel)
+    implementation(LifeCycle.Runtime)
+    implementation(LifeCycle.LiveData)
 
     //Room
     implementation(Room.Core)

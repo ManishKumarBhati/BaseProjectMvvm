@@ -1,9 +1,7 @@
 package com.citiustech.domain
 
-import io.reactivex.Observable
-
 interface Repository {
-    fun getData(): Observable<Response>
+    suspend fun getData(): Result<Response>
 }
 
 data class Response(

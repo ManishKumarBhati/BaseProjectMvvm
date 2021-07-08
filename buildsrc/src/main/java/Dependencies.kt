@@ -15,6 +15,7 @@ object Version {
     const val OkIo = "1.17.4"
     const val RxBinding = "4.0.0"
     const val Groupie = "2.9.0"
+    const val LifeCycle = "2.4.0-alpha02"
 }
 
 object Dependencies {
@@ -22,6 +23,14 @@ object Dependencies {
     val Material = "com.google.android.material:material:1.2.1"
     val Gradle = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Version.KotlinVersion}"
     val Timber = "com.jakewharton.timber:timber:${Version.Timber}"
+    val Glide = "com.github.bumptech.glide:glide:4.12.0"
+}
+
+object LifeCycle {
+    val Core = "androidx.lifecycle:lifecycle-extensions:2.2.0"
+    val ViewModel = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Version.LifeCycle}"
+    val Runtime = "androidx.lifecycle:lifecycle-runtime-ktx:${Version.LifeCycle}"
+    val LiveData = "androidx.lifecycle:lifecycle-livedata-ktx:${Version.LifeCycle}"
 }
 
 object Androidx {
@@ -29,6 +38,7 @@ object Androidx {
     val AppCompat = "androidx.appcompat:appcompat:1.2.0"
     val RecyclerView = "androidx.recyclerview:recyclerview:1.2.1"
     val ConstraintLayout = "androidx.constraintlayout:constraintlayout:2.0.1"
+    val Fragment = "androidx.fragment:fragment-ktx:1.2.5"
 }
 
 object UnitTest {
@@ -46,6 +56,8 @@ object Gradle {
 object Hilt {
     val Compiler = "com.google.dagger:hilt-android-compiler:${Version.Hilt}"
     val Core = "com.google.dagger:hilt-android:${Version.Hilt}"
+    val ViewModel = "androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha01"
+    val ViewModelCompiler = "androidx.hilt:hilt-compiler:1.0.0-alpha01"
 }
 
 object Retrofit {

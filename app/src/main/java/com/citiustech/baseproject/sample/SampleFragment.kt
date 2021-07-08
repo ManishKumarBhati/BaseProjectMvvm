@@ -2,14 +2,14 @@ package com.citiustech.baseproject.sample
 
 import android.os.Bundle
 import android.view.View
+import androidx.fragment.app.viewModels
 import com.citiustech.baseproject.R
 import com.citiustech.baseproject.base.BaseFragment
 import com.citiustech.baseproject.databinding.FragmentSampleBinding
+import com.citiustech.baseproject.util.Status
 import com.citiustech.domain.Repository
+import com.citiustech.domain.Response
 import dagger.hilt.android.AndroidEntryPoint
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.rxkotlin.addTo
-import io.reactivex.schedulers.Schedulers
 import timber.log.Timber
 import javax.inject.Inject
 
@@ -20,22 +20,28 @@ class SampleFragment : BaseFragment() {
     @Inject
     lateinit var repository: Repository
 
+    private val viewModel: SampleViewModel by viewModels()
+
     override fun getLayout(): Int {
         return R.layout.fragment_sample
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-
         binding = FragmentSampleBinding.bind(view)
-        repository.getData()
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe({ response ->
-                Timber.d("bmk $response")
-            }, { error ->
-                Timber.e("Error ${error.localizedMessage}")
-            }).addTo(disposable)
+//        viewModel.mainState.observe(viewLifecycleOwner, {viewModel.getData()})
+        binding.tvText.setOnClickListener {
+            viewModel.mainState.observe(viewLifecycleOwner, {
+                when (it.responseType) {
+                    Status.ERROR -> it.error?.message?.let { Timber.d("bmk Errro $it") }
+                    Status.LOADING -> Timber.d("bmk loader show")
+                    Status.SUCCESSFUL -> it.data?.let { data ->
+                        if (data is Response) Timber.d("bmk data $it")
+                    }
+                }
+            })
+        }
     }
+
 
     companion object {
         const val TAG = "SapmleFrag"
