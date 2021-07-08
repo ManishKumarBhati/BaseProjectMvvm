@@ -16,6 +16,8 @@ object Version {
     const val RxBinding = "4.0.0"
     const val Groupie = "2.9.0"
     const val LifeCycle = "2.4.0-alpha02"
+    const val Navigation = "2.3.5"
+    const val Glide = "4.12.0"
 }
 
 object Dependencies {
@@ -23,7 +25,7 @@ object Dependencies {
     val Material = "com.google.android.material:material:1.2.1"
     val Gradle = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Version.KotlinVersion}"
     val Timber = "com.jakewharton.timber:timber:${Version.Timber}"
-    val Glide = "com.github.bumptech.glide:glide:4.12.0"
+
 }
 
 object LifeCycle {
@@ -95,4 +97,14 @@ object Groupie {
     const val Core = "com.xwray:groupie:${Version.Groupie}"
     const val ViewBinding = "com.xwray:groupie-viewbinding:${Version.Groupie}"
     const val Extension = "com.xwray:groupie-kotlin-android-extensions:${Version.Groupie}"
+}
+
+object Glide {
+    val Core = "com.github.bumptech.glide:glide:${Version.Glide}"
+    val Compiler = "com.github.bumptech.glide:compiler:${Version.Glide}"
+}
+
+object Navigation {
+    const val Fragment = "androidx.navigation:navigation-fragment-ktx:${Version.Navigation}"
+    const val Ui = "androidx.navigation:navigation-ui-ktx:${Version.Navigation}"
 }

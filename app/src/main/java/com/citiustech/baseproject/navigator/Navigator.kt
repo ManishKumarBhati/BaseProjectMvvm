@@ -3,8 +3,6 @@ package com.citiustech.baseproject.navigator
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
-import com.citiustech.baseproject.R
-import com.citiustech.baseproject.sample.SampleFragment
 import javax.inject.Inject
 
 interface Navigator {
@@ -22,11 +20,11 @@ class NavigatorImpl @Inject constructor(val activity: FragmentActivity) : Naviga
     }
 
     fun openScreen(fragment: Fragment) {
-        activity.supportFragmentManager.beginTransaction()
-            .disallowAddToBackStack()
-            .replace(
-                R.id.frame, fragment, SampleFragment.TAG
-            )
-            .commit()
+//        activity.supportFragmentManager.beginTransaction()
+//            .disallowAddToBackStack()
+//            .replace(
+//                R.id.frame, fragment, SampleFragment.TAG
+//            )
+//            .commit()
     }
 }

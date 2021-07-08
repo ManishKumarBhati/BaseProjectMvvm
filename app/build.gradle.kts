@@ -54,6 +54,8 @@ dependencies {
 
     //Hilt
     implementation(Hilt.Core)
+    implementation("org.jetbrains.kotlin:kotlin-stdlib:${rootProject.extra["kotlin_version"]}")
+    implementation("androidx.legacy:legacy-support-v4:1.0.0")
     kapt(Hilt.Compiler)
     implementation(Hilt.ViewModel)
     kapt(Hilt.ViewModelCompiler)
@@ -83,6 +85,10 @@ dependencies {
     implementation(RxJava.Java)
     implementation(RxJava.Kotlin)
     implementation(RxJava.Android)
+
+    //Navigation
+    implementation(Navigation.Fragment)
+    implementation(Navigation.Ui)
 
     //UnitTest
     testImplementation(UnitTest.Junit)

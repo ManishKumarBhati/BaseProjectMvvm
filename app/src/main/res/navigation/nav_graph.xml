@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/frg_sample">
+    <fragment
+        android:id="@+id/frg_sample"
+        android:name="com.citiustech.baseproject.sample.SampleFragment"
+        android:label="sample"
+        tools:layout="@layout/fragment_sample">
+        <action
+            android:id="@+id/nav_to_second_frag"
+            app:destination="@id/secondSampleFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/secondSampleFragment"
+        android:name="com.citiustech.baseproject.SecondSampleFragment"
+        android:label="fragment_second_sample"
+        tools:layout="@layout/fragment_second_sample">
+        <action
+            android:id="@+id/nav_to_first_frag"
+            app:destination="@id/frg_sample" />
+    </fragment>
+</navigation>

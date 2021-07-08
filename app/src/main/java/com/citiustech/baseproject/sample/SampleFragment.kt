@@ -2,7 +2,9 @@ package com.citiustech.baseproject.sample
 
 import android.os.Bundle
 import android.view.View
+import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.citiustech.baseproject.R
 import com.citiustech.baseproject.base.BaseFragment
 import com.citiustech.baseproject.databinding.FragmentSampleBinding
@@ -39,6 +41,12 @@ class SampleFragment : BaseFragment() {
                     }
                 }
             })
+        }
+        binding.btnNav.setOnClickListener {
+            findNavController().navigate(
+                R.id.nav_to_second_frag,
+                bundleOf("bmk" to "Manish")
+            )
         }
     }
 
