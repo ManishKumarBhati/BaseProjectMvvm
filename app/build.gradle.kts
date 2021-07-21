@@ -41,6 +41,11 @@ android {
     buildFeatures {
         viewBinding = true
     }
+    testOptions {
+        unitTests {
+            isIncludeAndroidResources = true
+        }
+    }
 }
 
 dependencies {
@@ -51,6 +56,8 @@ dependencies {
     implementation(Dependencies.Material)
     implementation(Androidx.ConstraintLayout)
     implementation(Androidx.Fragment)
+    implementation(Androidx.Preferences)
+    implementation(Dependencies.Stetho)
 
     //Hilt
     implementation(Hilt.Core)
@@ -93,7 +100,8 @@ dependencies {
     //UnitTest
     testImplementation(UnitTest.Junit)
     androidTestImplementation(UnitTest.JunitTest)
-    androidTestImplementation(UnitTest.EspressoCore)
+//    androidTestImplementation(UnitTest.EspressoCore)
+    androidTestImplementation(UnitTest.Robolectric)
 
     implementation(project(":domain"))
     implementation(project(":data"))

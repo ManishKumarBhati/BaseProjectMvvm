@@ -25,6 +25,7 @@ object Dependencies {
     val Material = "com.google.android.material:material:1.2.1"
     val Gradle = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Version.KotlinVersion}"
     val Timber = "com.jakewharton.timber:timber:${Version.Timber}"
+    val Stetho = "com.facebook.stetho:stetho:1.5.1"
 
 }
 
@@ -41,12 +42,14 @@ object Androidx {
     val RecyclerView = "androidx.recyclerview:recyclerview:1.2.1"
     val ConstraintLayout = "androidx.constraintlayout:constraintlayout:2.0.1"
     val Fragment = "androidx.fragment:fragment-ktx:1.2.5"
+    val Preferences = "androidx.security:security-crypto:1.1.0-alpha02"
 }
 
 object UnitTest {
     val Junit = "junit:junit:4.13.2"
     val JunitTest = "androidx.test.ext:junit:1.1.2"
     val EspressoCore = "androidx.test.espresso:espresso-core:3.3.0"
+    val Robolectric = "org.robolectric:robolectric:4.4"
 }
 
 object Gradle {

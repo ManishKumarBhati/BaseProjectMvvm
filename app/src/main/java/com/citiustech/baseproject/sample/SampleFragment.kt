@@ -1,5 +1,6 @@
 package com.citiustech.baseproject.sample
 
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.View
 import androidx.core.os.bundleOf
@@ -21,6 +22,9 @@ class SampleFragment : BaseFragment() {
     lateinit var binding: FragmentSampleBinding
 
     @Inject
+    lateinit var sharedPreferences: SharedPreferences
+
+    @Inject
     lateinit var repository: Repository
 
     private val viewModel: SampleViewModel by viewModels()
@@ -32,6 +36,7 @@ class SampleFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         binding = FragmentSampleBinding.bind(view)
 //        viewModel.mainState.observe(viewLifecycleOwner, {viewModel.getData()})
+        setSharedPref()
         binding.tvText.setOnClickListener {
             viewModel.mainState.observe(viewLifecycleOwner, {
                 when (it.responseType) {
@@ -51,6 +56,13 @@ class SampleFragment : BaseFragment() {
                 R.id.nav_to_second_frag,
                 bundleOf("bmk" to "Manish")
             )
+            Timber.d("bmk ${PreferenceManager(requireContext()).getPreferredLocale()}")
         }
+    }
+
+    private fun setSharedPref() {
+        sharedPreferences.edit().putString("citiustech", "test").apply()
+        val d = sharedPreferences.getString("citiustech", "manish")
+        Timber.d("bmk $d")
     }
 }
