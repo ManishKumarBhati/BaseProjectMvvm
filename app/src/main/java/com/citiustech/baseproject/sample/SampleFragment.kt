@@ -8,6 +8,7 @@ import androidx.navigation.fragment.findNavController
 import com.citiustech.baseproject.R
 import com.citiustech.baseproject.base.BaseFragment
 import com.citiustech.baseproject.databinding.FragmentSampleBinding
+import com.citiustech.baseproject.util.PreferenceManager
 import com.citiustech.baseproject.util.Status
 import com.citiustech.domain.Repository
 import com.citiustech.domain.Response
@@ -42,16 +43,14 @@ class SampleFragment : BaseFragment() {
                 }
             })
         }
+
         binding.btnNav.setOnClickListener {
+            PreferenceManager(requireContext()).setPreferredLocale("hi")
+            activity?.recreate()
             findNavController().navigate(
                 R.id.nav_to_second_frag,
                 bundleOf("bmk" to "Manish")
             )
         }
-    }
-
-
-    companion object {
-        const val TAG = "SapmleFrag"
     }
 }

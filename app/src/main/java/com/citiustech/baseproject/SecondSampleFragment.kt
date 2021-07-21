@@ -5,6 +5,7 @@ import android.view.View
 import androidx.navigation.fragment.findNavController
 import com.citiustech.baseproject.base.BaseFragment
 import com.citiustech.baseproject.databinding.FragmentSecondSampleBinding
+import com.citiustech.baseproject.util.PreferenceManager
 import timber.log.Timber
 
 class SecondSampleFragment : BaseFragment() {
@@ -18,6 +19,8 @@ class SecondSampleFragment : BaseFragment() {
             Timber.d(it.getString("bmk"))
         }
         binding.tvText.setOnClickListener {
+            PreferenceManager(requireContext()).setPreferredLocale("en")
+            activity?.recreate()
             findNavController().navigate(R.id.nav_to_first_frag)
         }
     }
