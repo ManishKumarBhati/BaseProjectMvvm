@@ -56,6 +56,9 @@ dependencies {
     implementation(Room.Core)
     implementation(Room.RxJava)
     kapt(Room.Compiler)
+    implementation(Room.SqlCipher)
+    implementation(Room.Sqlite)
+    implementation(Dependencies.Gson)
 
     //Retrofit
     implementation(Retrofit.Core)

@@ -3,6 +3,7 @@
     <string name="app_name">BaseProject</string>
     <string name="hello_blank_fragment">Hellow Blank Fragment</string>
     <string name="text_label_nav">एनएवी</string>
-    <string name="text_label_hello">नमस्ते लियो</string>
+    <string name="text_label_first_text">पहला पाठ</string>
+    <string name="text_label_second_text">दूसरा पाठ</string>
 
 </resources>

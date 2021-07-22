@@ -1,7 +1,10 @@
 package com.citiustech.domain
 
+import androidx.lifecycle.LiveData
+
 interface Repository {
-    suspend fun getData(): Result<Response>
+    suspend fun getData(id: String): Result<Response>
+    fun getLocalData(id: String): LiveData<Response>
 }
 
 data class Response(

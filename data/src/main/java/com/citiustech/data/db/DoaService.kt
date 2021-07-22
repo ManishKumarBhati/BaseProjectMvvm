@@ -1,7 +1,7 @@
 package com.citiustech.data.db
 
+import androidx.lifecycle.LiveData
 import androidx.room.*
-import io.reactivex.Observable
 
 @Entity(tableName = "table_name")
 data class TableData(
@@ -16,7 +16,7 @@ interface DoaService {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertAll(data: TableData)
 
-    @Query("SELECT * FROM table_name LIMIT 1")
-    fun getData(): Observable<TableData>
+    @Query("SELECT * FROM table_name order by id desc LIMIT 1")
+    fun getData(): LiveData<TableData>
 
 }

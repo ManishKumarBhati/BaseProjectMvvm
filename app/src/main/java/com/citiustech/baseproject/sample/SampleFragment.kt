@@ -35,10 +35,9 @@ class SampleFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         binding = FragmentSampleBinding.bind(view)
-//        viewModel.mainState.observe(viewLifecycleOwner, {viewModel.getData()})
         setSharedPref()
         binding.tvText.setOnClickListener {
-            viewModel.mainState.observe(viewLifecycleOwner, {
+            viewModel.getData().observe(viewLifecycleOwner, {
                 when (it.responseType) {
                     Status.ERROR -> it.error?.message?.let { Timber.d("bmk Errro $it") }
                     Status.LOADING -> Timber.d("bmk loader show")
@@ -46,6 +45,19 @@ class SampleFragment : BaseFragment() {
                         if (data is Response) Timber.d("bmk data $it")
                     }
                 }
+            })
+        }
+        binding.tvText2.setOnClickListener {
+            viewModel.getLocalData().observe(viewLifecycleOwner, {
+                binding.apply {
+                    if (it.id > 0) {
+                        tvId.text = "id:${it.id}"
+                        tvStaus.text = "status:${it.completed}"
+                        tvTitle.text = "title:${it.title}"
+                    } else
+                        tvStaus.text = "${it.title}"
+                }
+                Timber.d("bmk Load local Data $it")
             })
         }
 
@@ -56,7 +68,6 @@ class SampleFragment : BaseFragment() {
                 R.id.nav_to_second_frag,
                 bundleOf("bmk" to "Manish")
             )
-            Timber.d("bmk ${PreferenceManager(requireContext()).getPreferredLocale()}")
         }
     }
 

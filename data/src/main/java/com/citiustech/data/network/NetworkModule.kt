@@ -1,20 +1,26 @@
-package com.citiustech.data.network
+package com.citiustech.data
 
 import android.content.Context
+import android.content.SharedPreferences
 import android.util.Log
 import androidx.room.Room
-import com.citiustech.data.ApiService
-import com.citiustech.data.Base_Url
+import com.citiustech.data.db.DoaService
 import com.citiustech.data.db.RoomDB
+import com.citiustech.data.network.SSLCertificatePinnerImpl
+import com.citiustech.data.util.Encryptor
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
+import net.sqlcipher.database.SQLiteDatabase
+import net.sqlcipher.database.SupportFactory
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.moshi.MoshiConverterFactory
+import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 
 @Module
@@ -33,8 +39,10 @@ object NetworkModule {
         logger: HttpLoggingInterceptor,
     ): OkHttpClient {
         return OkHttpClient.Builder()
-            .addInterceptor(logger)
+            .readTimeout(30, TimeUnit.SECONDS)
+            .connectTimeout(30, TimeUnit.SECONDS)
             .certificatePinner(SSLCertificatePinnerImpl().getPinner())
+            .addInterceptor(logger)
             .build()
     }
 
@@ -57,9 +65,20 @@ object NetworkModule {
 
     @Provides
     @Singleton
-    fun provideAppDatabase(context: Context): RoomDB {
-        return Room.databaseBuilder(context, RoomDB::class.java, "test_app_db")
+    fun provideAppDatabase(@ApplicationContext context: Context, prefs: SharedPreferences): RoomDB {
+        val hook = Encryptor(context, prefs).getCharKey("Test".toCharArray())
+        val byte = SQLiteDatabase.getBytes("Test".toCharArray())
+        val factory = SupportFactory(byte)
+        return Room.databaseBuilder(context, RoomDB::class.java, "citius_tech_db")
+            .openHelperFactory(factory)
             .fallbackToDestructiveMigration()
             .build()
     }
+
+    @Provides
+    @Singleton
+    fun provideDoaService(roomDB: RoomDB): DoaService {
+        return roomDB.doaService()
+    }
+
 }

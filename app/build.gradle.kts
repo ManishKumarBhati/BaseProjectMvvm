@@ -8,13 +8,13 @@ plugins {
 android {
     signingConfigs {
         getByName("debug") {
-            storeFile = file("D:\\Shukla\\androidbaseproject\\citiustechkey.jks")
+            storeFile = file("..\\citiustechkey.jks")
             storePassword = "Healthcare"
             keyAlias = "Healthcare"
             keyPassword = "Healthcare"
         }
         create("release") {
-            storeFile = file("D:\\Shukla\\androidbaseproject\\citiustechkey.jks")
+            storeFile = file(".\\citiustechkey.jks")
             storePassword = "Healthcare"
             keyAlias = "Healthcare"
             keyPassword = "Healthcare"
