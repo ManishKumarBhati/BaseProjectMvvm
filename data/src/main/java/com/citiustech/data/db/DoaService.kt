@@ -16,7 +16,7 @@ interface DoaService {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertAll(data: TableData)
 
-    @Query("SELECT * FROM table_name LIMIT 1")
+    @Query("SELECT * FROM table_name order by id desc LIMIT 1")
     fun getData(): LiveData<TableData>
 
 }

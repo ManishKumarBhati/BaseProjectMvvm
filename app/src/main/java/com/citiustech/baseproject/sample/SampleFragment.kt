@@ -37,7 +37,7 @@ class SampleFragment : BaseFragment() {
         binding = FragmentSampleBinding.bind(view)
         setSharedPref()
         binding.tvText.setOnClickListener {
-            viewModel.mainState.observe(viewLifecycleOwner, {
+            viewModel.getData().observe(viewLifecycleOwner, {
                 when (it.responseType) {
                     Status.ERROR -> it.error?.message?.let { Timber.d("bmk Errro $it") }
                     Status.LOADING -> Timber.d("bmk loader show")

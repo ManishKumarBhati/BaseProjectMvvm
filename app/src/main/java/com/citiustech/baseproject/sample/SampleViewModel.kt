@@ -24,10 +24,10 @@ class SampleViewModel @Inject constructor(private val repository: Repository) :
         }
 
     init {
-        getData()
+//        getData()
     }
 
-    fun getData() {
+    fun getData(): MutableLiveData<Data<*>> {
         viewModelScope.launch {
             val id = (1..9).random().toString()
 
@@ -43,6 +43,7 @@ class SampleViewModel @Inject constructor(private val repository: Repository) :
                 }
             }
         }
+        return mutableMainState
     }
 
     fun getLocalData() = repository.getLocalData((1..9).random().toString())
