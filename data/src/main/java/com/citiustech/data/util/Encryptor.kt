@@ -24,17 +24,17 @@ class Encryptor(val context: Context, val prefs: SharedPreferences) {
     private var dbCharKey: CharArray? = null
 
     fun getCharKey(passcode: CharArray): CharArray {
-        if (dbCharKey == null) initKey(passcode)
+        if (dbCharKey == null) passcode.initKey()
         return dbCharKey ?: error("Failed to decrypt database key")
     }
 
-    private fun initKey(passcode: CharArray) {
+    private fun CharArray.initKey() {
         val storable = getStorable()
         if (storable == null) {
             createNewKey()
-            persistRawKey(passcode, prefs)
+            persistRawKey(this, prefs)
         } else {
-            rawByteKey = getRawByteKey(passcode, storable)
+            rawByteKey = getRawByteKey(storable)
             dbCharKey = rawByteKey?.toHex()
         }
     }
@@ -68,12 +68,10 @@ class Encryptor(val context: Context, val prefs: SharedPreferences) {
     }
 
     private fun persistRawKey(userPasscode: CharArray, prefs: SharedPreferences) {
-        toStorable(userPasscode)?.let {
+        userPasscode.toStorable()?.let {
             Timber.d("bmk data $it")
             saveToPrefs(it, prefs)
         }
-        // Implementation explained in next step
-
     }
 
     private fun saveToPrefs(keyData: KeyData, prefs: SharedPreferences) {
@@ -88,7 +86,7 @@ class Encryptor(val context: Context, val prefs: SharedPreferences) {
      * @param userPasscode the user's passcode
      * @return storable instance
      */
-    private fun toStorable(userPasscode: CharArray): KeyData? {
+    private fun CharArray.toStorable(): KeyData? {
         // Generate a random 8 byte salt
         return try {
             val salt = ByteArray(8).apply {
@@ -98,7 +96,7 @@ class Encryptor(val context: Context, val prefs: SharedPreferences) {
                     SecureRandom().nextBytes(this)
                 }
             }
-            val secret: SecretKey = generateSecretKey(userPasscode, salt)
+            val secret: SecretKey = generateSecretKey(salt)
 
             // Now encrypt the database key with PBE(Passcode Base Encryption)
             val cipher: Cipher = Cipher.getInstance("AES/CBC/PKCS5Padding")
@@ -120,10 +118,10 @@ class Encryptor(val context: Context, val prefs: SharedPreferences) {
         }
     }
 
-    private fun generateSecretKey(passcode: CharArray, salt: ByteArray): SecretKey {
+    private fun CharArray.generateSecretKey(salt: ByteArray): SecretKey {
         // Initialize PBE with password
         val factory: SecretKeyFactory = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA256")
-        val spec: KeySpec = PBEKeySpec(passcode, salt, 65536, 256)
+        val spec: KeySpec = PBEKeySpec(this, salt, 65536, 256)
         val tmp: SecretKey = factory.generateSecret(spec)
         return SecretKeySpec(tmp.encoded, "AES")
     }
@@ -142,11 +140,11 @@ class Encryptor(val context: Context, val prefs: SharedPreferences) {
         }
     }
 
-    private fun getRawByteKey(passcode: CharArray, keyData: KeyData): ByteArray {
+    private fun CharArray.getRawByteKey(keyData: KeyData): ByteArray {
         val aesWrappedKey = Base64.decode(keyData.key, Base64.DEFAULT)
         val iv = Base64.decode(keyData.iv, Base64.DEFAULT)
         val salt = Base64.decode(keyData.salt, Base64.DEFAULT)
-        val secret: SecretKey = generateSecretKey(passcode, salt)
+        val secret: SecretKey = generateSecretKey(salt)
         val cipher = Cipher.getInstance("AES/CBC/PKCS5Padding")
         cipher.init(Cipher.DECRYPT_MODE, secret, IvParameterSpec(iv))
         return cipher.doFinal(aesWrappedKey)
