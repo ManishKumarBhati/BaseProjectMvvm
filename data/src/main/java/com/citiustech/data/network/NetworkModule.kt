@@ -1,8 +1,10 @@
-package com.citiustech.data
+package com.citiustech.data.network
 
 import android.content.Context
 import android.util.Log
 import androidx.room.Room
+import com.citiustech.data.ApiService
+import com.citiustech.data.Base_Url
 import com.citiustech.data.db.RoomDB
 import dagger.Module
 import dagger.Provides
@@ -32,6 +34,7 @@ object NetworkModule {
     ): OkHttpClient {
         return OkHttpClient.Builder()
             .addInterceptor(logger)
+            .certificatePinner(SSLCertificatePinnerImpl().getPinner())
             .build()
     }
 

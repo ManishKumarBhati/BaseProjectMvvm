@@ -6,6 +6,20 @@ plugins {
 }
 
 android {
+    signingConfigs {
+        getByName("debug") {
+            storeFile = file("D:\\Shukla\\androidbaseproject\\citiustechkey.jks")
+            storePassword = "Healthcare"
+            keyAlias = "Healthcare"
+            keyPassword = "Healthcare"
+        }
+        create("release") {
+            storeFile = file("D:\\Shukla\\androidbaseproject\\citiustechkey.jks")
+            storePassword = "Healthcare"
+            keyAlias = "Healthcare"
+            keyPassword = "Healthcare"
+        }
+    }
     compileSdkVersion(Version.CompileSdk)
     buildToolsVersion = Version.BuildToolsVersion
 
@@ -21,12 +35,35 @@ android {
 
     buildTypes {
         getByName("release") {
-            isMinifyEnabled = false
+            isMinifyEnabled = true
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+            signingConfig = signingConfigs.getByName("release")
+            multiDexEnabled = true
         }
+        getByName("debug") {
+            applicationIdSuffix = "debug"
+            signingConfig = signingConfigs.getByName("debug")
+        }
+    }
+
+    lintOptions {
+        // Turns off checks for the issue IDs you specify.
+        disable("TypographyFractions")
+        disable("TypographyQuotes")
+        // Turns on checks for the issue IDs you specify. These checks are in
+        // addition to the default lint checks.
+        enable("RtlHardcoded")
+        enable("RtlCompat")
+        enable("RtlEnabled")
+        lintConfig=(file("lint.xml"))
+        // To enable checks for only a subset of issue IDs and ignore all others,
+        // list the issue IDs with the 'check' property instead. This property overrides
+        // any issue IDs you enable or disable using the properties above.
+        checkOnly("NewApi", "InlinedApi","HandlerLeak")
+        baseline(file("lint-baseline.xml"))
     }
 
     compileOptions {
@@ -64,7 +101,7 @@ dependencies {
     implementation("org.jetbrains.kotlin:kotlin-stdlib:${rootProject.extra["kotlin_version"]}")
     implementation("androidx.legacy:legacy-support-v4:1.0.0")
     kapt(Hilt.Compiler)
-    implementation(Hilt.ViewModel)
+//    implementation(Hilt.ViewModel)
     kapt(Hilt.ViewModelCompiler)
 
     //LifeCycle
