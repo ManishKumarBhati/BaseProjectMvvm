@@ -4,7 +4,9 @@ import com.citiustech.data.BuildConfig
 import okhttp3.CertificatePinner
 
 class SSLCertificatePinnerImpl: SSLCertificatePinner {
+
     private val HOST_NAME="jsonplaceholder.typicode.com"
+
     override fun getPinner(): CertificatePinner {
         if (BuildConfig.DEBUG) {
             return CertificatePinner.DEFAULT

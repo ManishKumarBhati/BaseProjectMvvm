@@ -6,6 +6,7 @@ import com.citiustech.baseproject.databinding.ActivityMainBinding
 import com.citiustech.baseproject.navigator.Navigator
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
+import kotlin.math.sqrt
 
 @AndroidEntryPoint
 class MainActivity : BaseActivity() {
@@ -16,5 +17,14 @@ class MainActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        calculateArea(5)
     }
+
+
+    fun calculateArea(radius:Int): Double {
+        val area=Math.PI * radius * radius
+        return area
+    }
+
 }
