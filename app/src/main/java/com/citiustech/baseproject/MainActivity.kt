@@ -18,6 +18,7 @@ class MainActivity : BaseActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        showShortToast("Hello Guest")
         calculateArea(5)
     }
 
