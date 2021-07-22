@@ -1,7 +1,7 @@
 package com.citiustech.data.db
 
+import androidx.lifecycle.LiveData
 import androidx.room.*
-import io.reactivex.Observable
 
 @Entity(tableName = "table_name")
 data class TableData(
@@ -17,6 +17,6 @@ interface DoaService {
     fun insertAll(data: TableData)
 
     @Query("SELECT * FROM table_name LIMIT 1")
-    fun getData(): Observable<TableData>
+    fun getData(): LiveData<TableData>
 
 }

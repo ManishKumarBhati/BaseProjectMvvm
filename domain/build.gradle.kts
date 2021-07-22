@@ -48,8 +48,5 @@ dependencies {
     androidTestImplementation(UnitTest.JunitTest)
     androidTestImplementation(UnitTest.EspressoCore)
 
-    //RxJava
-    implementation(RxJava.Java)
-    implementation(RxJava.Kotlin)
-    implementation(RxJava.Android)
+    implementation(LifeCycle.LiveData)
 }

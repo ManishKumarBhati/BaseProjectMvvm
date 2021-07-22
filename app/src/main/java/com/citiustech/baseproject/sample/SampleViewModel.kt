@@ -29,8 +29,10 @@ class SampleViewModel @Inject constructor(private val repository: Repository) :
 
     fun getData() {
         viewModelScope.launch {
+            val id = (1..9).random().toString()
+
             mutableMainState.value = Data(responseType = Status.LOADING, error = null, data = null)
-            when (val result = withContext(Dispatchers.IO) { repository.getData() }) {
+            when (val result = withContext(Dispatchers.IO) { repository.getData(id) }) {
                 is Result.Failure -> {
                     mutableMainState.value =
                         Data(responseType = Status.ERROR, error = result.exception, data = null)
@@ -43,4 +45,5 @@ class SampleViewModel @Inject constructor(private val repository: Repository) :
         }
     }
 
+    fun getLocalData() = repository.getLocalData((1..9).random().toString())
 }

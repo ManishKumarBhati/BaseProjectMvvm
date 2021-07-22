@@ -26,7 +26,7 @@ object Dependencies {
     val Gradle = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Version.KotlinVersion}"
     val Timber = "com.jakewharton.timber:timber:${Version.Timber}"
     val Stetho = "com.facebook.stetho:stetho:1.5.1"
-
+    val Gson = "com.google.code.gson:gson:2.8.5"
 }
 
 object LifeCycle {
@@ -69,6 +69,7 @@ object Retrofit {
     const val Core = "com.squareup.retrofit2:retrofit:${Version.Retrofit}"
     const val Adapter = "com.squareup.retrofit2:adapter-rxjava2:${Version.Retrofit}"
     const val Moshi = "com.squareup.retrofit2:converter-moshi:2.4.0"
+    const val Gson = "com.squareup.retrofit2:converter-gson:${Version.Retrofit}"
 }
 
 object OkHttp {
@@ -81,6 +82,8 @@ object Room {
     const val Core = "androidx.room:room-runtime:${Version.Room}"
     const val Compiler = "androidx.room:room-compiler:${Version.Room}"
     const val RxJava = "androidx.room:room-rxjava2:${Version.Room}"
+    const val SqlCipher = "net.zetetic:android-database-sqlcipher:4.4.2"
+    const val Sqlite = "androidx.sqlite:sqlite:2.0.1"
 }
 
 object RxJava {

@@ -1,8 +1,9 @@
-package com.citiustech.baseproject
+package com.citiustech.baseproject.samplesecond
 
 import android.os.Bundle
 import android.view.View
 import androidx.navigation.fragment.findNavController
+import com.citiustech.baseproject.R
 import com.citiustech.baseproject.base.BaseFragment
 import com.citiustech.baseproject.databinding.FragmentSecondSampleBinding
 import com.citiustech.baseproject.util.PreferenceManager

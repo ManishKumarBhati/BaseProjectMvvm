@@ -55,6 +55,10 @@ dependencies {
     //Room
     implementation(Room.Core)
     implementation(Room.RxJava)
+    implementation(Room.SqlCipher)
+    implementation(Room.Sqlite)
+    implementation(Dependencies.Gson)
+
     kapt(Room.Compiler)
 
     //Retrofit
@@ -66,11 +70,6 @@ dependencies {
     implementation(OkHttp.Core)
     implementation(OkHttp.Logger)
     implementation(OkHttp.Okio)
-
-    //RxJava
-    implementation(RxJava.Java)
-    implementation(RxJava.Kotlin)
-    implementation(RxJava.Android)
 
     implementation(project(":domain"))
 }

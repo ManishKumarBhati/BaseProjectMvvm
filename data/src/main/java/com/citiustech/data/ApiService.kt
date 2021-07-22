@@ -2,10 +2,11 @@ package com.citiustech.data
 
 import retrofit2.Response
 import retrofit2.http.GET
+import retrofit2.http.Path
 
 interface ApiService {
-    @GET("todos/1")
-    suspend fun getData(): Response<DataResponse>
+    @GET("todos/{id}")
+    suspend fun getData(@Path("id") id: String): Response<DataResponse>
 }
 
 const val Base_Url = "https://jsonplaceholder.typicode.com/"
