@@ -1,7 +1,8 @@
 package com.citiustech.data.network
 
-import com.citiustech.data.Base_Url
 import com.citiustech.data.BuildConfig
+import com.citiustech.data.util.BASE_URL
+import com.citiustech.data.util.SHA
 import okhttp3.CertificatePinner
 import java.net.URL
 
@@ -11,8 +12,8 @@ object SSLCertificatePinnerImpl {
             return CertificatePinner.DEFAULT
         }
         return CertificatePinner.Builder()
-            .add(URL(Base_Url).host)
-            .add("sha256/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=")
+            .add(URL(BASE_URL).host)
+            .add(SHA)
             .build()
     }
 }

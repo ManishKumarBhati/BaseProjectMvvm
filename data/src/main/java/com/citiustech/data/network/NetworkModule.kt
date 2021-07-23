@@ -7,6 +7,8 @@ import androidx.room.Room
 import com.citiustech.data.db.DoaService
 import com.citiustech.data.db.RoomDB
 import com.citiustech.data.network.SSLCertificatePinnerImpl
+import com.citiustech.data.util.BASE_URL
+import com.citiustech.data.util.DB_NAME
 import com.citiustech.data.util.Encryptor
 import dagger.Module
 import dagger.Provides
@@ -52,7 +54,7 @@ object NetworkModule {
         return Retrofit.Builder()
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .addConverterFactory(MoshiConverterFactory.create())
-            .baseUrl(Base_Url)
+            .baseUrl(BASE_URL)
             .client(client)
             .build()
     }
@@ -69,7 +71,7 @@ object NetworkModule {
         val hook = Encryptor(context, prefs).getCharKey("Test".toCharArray())
         val byte = SQLiteDatabase.getBytes("Test".toCharArray())
         val factory = SupportFactory(byte)
-        return Room.databaseBuilder(context, RoomDB::class.java, "citius_tech_db")
+        return Room.databaseBuilder(context, RoomDB::class.java, DB_NAME)
             .openHelperFactory(factory)
             .fallbackToDestructiveMigration()
             .build()

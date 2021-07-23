@@ -9,4 +9,3 @@ interface ApiService {
     suspend fun getData(@Path("id") id: String): Response<DataResponse>
 }
 
-const val Base_Url = "https://jsonplaceholder.typicode.com/"
