@@ -3,6 +3,8 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="text_label_nav">nav</string>
-    <string name="text_label_first_text">First text</string>
-    <string name="text_label_second_text">second text</string>
+    <string name="text_label_first_text">Load Data in Local</string>
+    <string name="text_label_second_text">Fetch Data from Local</string>
+    <string name="text_label_change_lang">भाषा बदलें</string>
+    <string name="text_label_nav_back">Back to Home Screen</string>
 </resources>

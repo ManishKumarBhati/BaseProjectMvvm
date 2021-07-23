@@ -61,9 +61,16 @@ class SampleFragment : BaseFragment() {
             })
         }
 
-        binding.btnNav.setOnClickListener {
-            PreferenceManager(requireContext()).setPreferredLocale("hi")
+        binding.btnLocal.setOnClickListener {
+            val pref = PreferenceManager(requireContext())
+            pref.setPreferredLocale(
+                if (pref.getPreferredLocale() == PreferenceManager.English)
+                    PreferenceManager.Hindi else PreferenceManager.English
+            )
             activity?.recreate()
+        }
+        binding.btnNav.setOnClickListener {
+
             findNavController().navigate(
                 R.id.nav_to_second_frag,
                 bundleOf("bmk" to "Manish")

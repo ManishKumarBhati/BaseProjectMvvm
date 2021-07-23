@@ -14,4 +14,9 @@ class PreferenceManager(context: Context) {
     fun setPreferredLocale(localeCode: String) {
         preferences.edit().putString("preferred_locale", localeCode).apply()
     }
+
+    companion object {
+        const val Hindi = "hi"
+        const val English = "en"
+    }
 }
