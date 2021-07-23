@@ -5,18 +5,20 @@ import android.content.SharedPreferences
 
 class PreferenceManager(context: Context) {
     private var preferences: SharedPreferences =
-        context.getSharedPreferences("sp", Context.MODE_PRIVATE)
+        context.getSharedPreferences(Localization, Context.MODE_PRIVATE)
 
     fun getPreferredLocale(): String {
-        return preferences.getString("preferred_locale", "en") ?: "en"
+        return preferences.getString(PREF_LOCALIZATION, English) ?: English
     }
 
     fun setPreferredLocale(localeCode: String) {
-        preferences.edit().putString("preferred_locale", localeCode).apply()
+        preferences.edit().putString(PREF_LOCALIZATION, localeCode).apply()
     }
 
     companion object {
+        const val PREF_LOCALIZATION = "localization"
         const val Hindi = "hi"
         const val English = "en"
+        const val Localization = "citius_localization"
     }
 }

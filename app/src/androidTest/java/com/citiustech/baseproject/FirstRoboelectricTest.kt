@@ -1,9 +1,7 @@
 package com.citiustech.baseproject
 
-import android.R
-import android.app.Application
-import android.content.Context
-import androidx.test.core.app.ApplicationProvider
+import com.citiustech.baseproject.sample.SampleFragment
+import junit.framework.Assert.assertNotNull
 import org.hamcrest.CoreMatchers.equalTo
 import org.hamcrest.MatcherAssert.assertThat
 import org.junit.Before
@@ -11,8 +9,6 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.Robolectric
 import org.robolectric.RobolectricTestRunner
-import org.robolectric.RuntimeEnvironment
-import org.robolectric.annotation.Config
 import org.robolectric.shadows.ShadowToast
 
 
@@ -30,7 +26,22 @@ class FirstRoboelectricTest {
     }
 
     @Test
-    fun checkToastOnLoadOfMainActivity(){
+    fun checkToastOnLoadOfMainActivity() {
         assertThat(ShadowToast.getTextOfLatestToast(), equalTo("Hello Guest"))
+    }
+
+    @Test
+    @Throws(Exception::class)
+    fun shouldFragmentNotBeNull() {
+        val fragment = SampleFragment()
+        startFragment(fragment)
+        assertNotNull(fragment)
+    }
+
+    private fun startFragment(fragment: SampleFragment) {
+        val fragmentManager = activity.supportFragmentManager;
+        val fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.add(fragment, null);
+        fragmentTransaction.commit();
     }
 }

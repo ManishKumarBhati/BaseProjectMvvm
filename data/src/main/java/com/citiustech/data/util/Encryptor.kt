@@ -4,9 +4,8 @@ import android.content.Context
 import android.content.SharedPreferences
 import android.os.Build
 import android.util.Base64
-import com.google.gson.Gson
-import com.google.gson.JsonSyntaxException
-import com.google.gson.reflect.TypeToken
+import com.squareup.moshi.JsonAdapter
+import com.squareup.moshi.Moshi
 import timber.log.Timber
 import java.security.AlgorithmParameters
 import java.security.SecureRandom
@@ -23,6 +22,8 @@ class Encryptor(val context: Context, val prefs: SharedPreferences) {
     private var rawByteKey: ByteArray? = null
     private var dbCharKey: CharArray? = null
 
+    var moshi = Moshi.Builder().build()
+    var jsonAdapter: JsonAdapter<KeyData> = moshi.adapter(KeyData::class.java)
     fun getCharKey(passcode: CharArray): CharArray {
         if (dbCharKey == null) passcode.initKey()
         return dbCharKey ?: error("Failed to decrypt database key")
@@ -75,7 +76,7 @@ class Encryptor(val context: Context, val prefs: SharedPreferences) {
     }
 
     private fun saveToPrefs(keyData: KeyData, prefs: SharedPreferences) {
-        val serialized = Gson().toJson(keyData)
+        val serialized = jsonAdapter.toJson(keyData)
         prefs.edit().putString("key", serialized).apply()
     }
 
@@ -134,8 +135,8 @@ class Encryptor(val context: Context, val prefs: SharedPreferences) {
         }
 
         return try {
-            Gson().fromJson(data, object : TypeToken<KeyData>() {}.type)
-        } catch (ex: JsonSyntaxException) {
+            jsonAdapter.fromJson(data)
+        } catch (ex: Exception) {
             null
         }
     }
