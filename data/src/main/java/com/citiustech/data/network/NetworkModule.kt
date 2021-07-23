@@ -41,7 +41,7 @@ object NetworkModule {
         return OkHttpClient.Builder()
             .readTimeout(30, TimeUnit.SECONDS)
             .connectTimeout(30, TimeUnit.SECONDS)
-            .certificatePinner(SSLCertificatePinnerImpl().getPinner())
+            .certificatePinner(SSLCertificatePinnerImpl.getPinner())
             .addInterceptor(logger)
             .build()
     }

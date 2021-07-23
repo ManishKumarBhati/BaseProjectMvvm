@@ -1,18 +1,17 @@
 package com.citiustech.data.network
 
+import com.citiustech.data.Base_Url
 import com.citiustech.data.BuildConfig
 import okhttp3.CertificatePinner
+import java.net.URL
 
-class SSLCertificatePinnerImpl: SSLCertificatePinner {
-
-    private val HOST_NAME="jsonplaceholder.typicode.com"
-
-    override fun getPinner(): CertificatePinner {
+object SSLCertificatePinnerImpl {
+    fun getPinner(): CertificatePinner {
         if (BuildConfig.DEBUG) {
             return CertificatePinner.DEFAULT
         }
         return CertificatePinner.Builder()
-            .add(HOST_NAME)
+            .add(URL(Base_Url).host)
             .add("sha256/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=")
             .build()
     }
