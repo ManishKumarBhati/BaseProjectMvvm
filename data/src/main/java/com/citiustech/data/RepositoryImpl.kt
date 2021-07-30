@@ -33,4 +33,12 @@ class RepositoryImpl @Inject constructor(val api: ApiService, val doaService: Do
 
         }
     }
+
+    override suspend fun update(id: Int, title: String) {
+        doaService.update(id, title)
+    }
+
+    override suspend fun delete(id: Int) {
+        doaService.delete(id)
+    }
 }

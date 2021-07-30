@@ -19,4 +19,10 @@ interface DoaService {
     @Query("SELECT * FROM table_name order by id desc LIMIT 1")
     fun getData(): LiveData<TableData>
 
+    @Query("update table_name set title=:ptitle where id =:pid")
+    suspend fun update(pid: Int, ptitle: String)
+
+    @Query("delete from table_name  where id =:pid")
+    suspend fun delete(pid: Int)
+
 }

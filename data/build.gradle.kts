@@ -54,7 +54,7 @@ dependencies {
 
     //Room
     implementation(Room.Core)
-    implementation(Room.RxJava)
+    implementation(Room.CoreKtx)
     kapt(Room.Compiler)
     implementation(Room.SqlCipher)
     implementation(Room.Sqlite)

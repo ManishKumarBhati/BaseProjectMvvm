@@ -47,6 +47,10 @@ class SampleFragment : BaseFragment() {
                 }
             })
         }
+        binding.btnDelete.setOnClickListener { if (!getID().equals("")) viewModel.delete(getID().toInt()) }
+        binding.btnUpdate.setOnClickListener {
+            if (!getID().equals("")) viewModel.updateData(getID().toInt(), getTitle())
+        }
         binding.tvText2.setOnClickListener {
             viewModel.getLocalData().observe(viewLifecycleOwner, {
                 binding.apply {
@@ -54,10 +58,12 @@ class SampleFragment : BaseFragment() {
                         tvId.text = "id:${it.id}"
                         tvStaus.text = "status:${it.completed}"
                         tvTitle.text = "title:${it.title}"
-                    } else
+                    } else {
+                        tvId.text = ""
                         tvStaus.text = "${it.title}"
+                        tvTitle.text = ""
+                    }
                 }
-                Timber.d("bmk Load local Data $it")
             })
         }
 
@@ -77,6 +83,9 @@ class SampleFragment : BaseFragment() {
             )
         }
     }
+
+    fun getID() = binding.etId.text.toString().trim()
+    fun getTitle() = binding.etTitle.text.toString().trim()
 
     private fun setSharedPref() {
         sharedPreferences.edit().putString("citiustech", "test").apply()

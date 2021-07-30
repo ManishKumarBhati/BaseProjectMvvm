@@ -110,11 +110,6 @@ dependencies {
     implementation(LifeCycle.Runtime)
     implementation(LifeCycle.LiveData)
 
-    //Room
-    implementation(Room.Core)
-    implementation(Room.RxJava)
-    kapt(Room.Compiler)
-
     //Retrofit
     implementation(Retrofit.Core)
     implementation(Retrofit.Moshi)

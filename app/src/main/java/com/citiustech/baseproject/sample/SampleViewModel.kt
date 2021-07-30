@@ -46,5 +46,8 @@ class SampleViewModel @Inject constructor(private val repository: Repository) :
         return mutableMainState
     }
 
+    fun updateData(id: Int, title: String) = viewModelScope.launch { repository.update(id, title) }
+    fun delete(id: Int) = viewModelScope.launch { repository.delete(id) }
     fun getLocalData() = repository.getLocalData((1..9).random().toString())
+
 }

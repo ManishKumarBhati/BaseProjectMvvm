@@ -10,7 +10,7 @@ object Version {
     const val Timber = "4.7.1"
     const val Hilt = "2.35"
     const val Retrofit = "2.6.0"
-    const val Room = "2.1.0"
+    const val Room = "2.3.0"
     const val OkHttp = "3.12.3"
     const val OkIo = "1.17.4"
     const val RxBinding = "4.0.0"
@@ -81,7 +81,7 @@ object OkHttp {
 object Room {
     const val Core = "androidx.room:room-runtime:${Version.Room}"
     const val Compiler = "androidx.room:room-compiler:${Version.Room}"
-    const val RxJava = "androidx.room:room-rxjava2:${Version.Room}"
+    const val CoreKtx = "androidx.room:room-ktx:${Version.Room}"
     const val SqlCipher = "net.zetetic:android-database-sqlcipher:4.4.2"
     const val Sqlite = "androidx.sqlite:sqlite:2.0.1"
 }
