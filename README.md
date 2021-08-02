@@ -25,17 +25,17 @@ This application is a simple base project which has below features points:
   4. Fetech data from local is used to get data from Room DB. It will only load single data.
   5. Nav button is used for navigation.
   6. Lang Button is used changing the language of the app.
-  <img alt="Nav Graph" height="250px" src="scr_1.PNG" />
+  <img alt="Home Screen" src="scr_1.PNG" />
 
 
 - Second screen has two button. one will navigate to home and another one for notification.
   1. Back Button is for navigating back to home screen.
   2. Show notification is used to show dumm notificaiton, which is triggered mannly on button click.
 
-  <img alt="Nav Graph" height="250px" src="scr_2.PNG" />
+  <img alt="Second Screen" src="scr_2.PNG" />
 
 ***Navigation between the screens has been done using the Jetpack Navigation library and the following is its nav graph:***
-<img alt="Nav Graph" height="250px" src="scr_3.PNG" />
+<img alt="Nav Graph" src="scr_3.PNG" />
 
 ## Libraries The App uses libraries and tools used to build Modern Android application, mainly part of Android Jetpack
 - [Kotlin](https://kotlinlang.org/)
