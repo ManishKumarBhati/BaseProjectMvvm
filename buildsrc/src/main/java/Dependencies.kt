@@ -55,6 +55,7 @@ object UnitTest {
 object Gradle {
     val Build = "com.android.tools.build:gradle:${Version.BuildGradle}"
     val Kotlin = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Version.KotlinVersion}"
+    val FireBase = "com.google.gms:google-services:4.3.8"
     val Hilt = "com.google.dagger:hilt-android-gradle-plugin:${Version.Hilt}"
 }
 
@@ -113,4 +114,10 @@ object Glide {
 object Navigation {
     const val Fragment = "androidx.navigation:navigation-fragment-ktx:${Version.Navigation}"
     const val Ui = "androidx.navigation:navigation-ui-ktx:${Version.Navigation}"
+}
+
+object Firebase {
+    const val BOM = "com.google.firebase:firebase-bom:28.3.0"
+    const val Mssaging = "com.google.firebase:firebase-messaging-ktx"
+    const val Analytics = "com.google.firebase:firebase-analytics-ktx"
 }

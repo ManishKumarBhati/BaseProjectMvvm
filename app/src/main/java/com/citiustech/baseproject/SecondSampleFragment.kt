@@ -5,6 +5,7 @@ import android.view.View
 import androidx.navigation.fragment.findNavController
 import com.citiustech.baseproject.base.BaseFragment
 import com.citiustech.baseproject.databinding.FragmentSecondSampleBinding
+import com.citiustech.baseproject.util.showNotification
 import timber.log.Timber
 
 class SecondSampleFragment : BaseFragment() {
@@ -17,11 +18,13 @@ class SecondSampleFragment : BaseFragment() {
         arguments?.let {
             Timber.d(it.getString("bmk"))
         }
-        binding.tvText.setOnClickListener {
-//            PreferenceManager(requireContext()).setPreferredLocale("en")
-//            activity?.recreate()
+        binding.btnHome.setOnClickListener {
             findNavController().navigate(R.id.nav_to_first_frag)
         }
+        binding.btnNotify.setOnClickListener {
+            requireContext().showNotification("this is a title", "this is a Body")
+        }
+
     }
 
 }

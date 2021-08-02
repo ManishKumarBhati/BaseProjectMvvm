@@ -3,6 +3,7 @@ plugins {
     id("kotlin-android")
     id("kotlin-kapt")
     id("dagger.hilt.android.plugin")
+//    id("com.google.gms.google-services") todo(uncomment this once after adding **google-service.json**)
 }
 
 android {
@@ -58,11 +59,11 @@ android {
         enable("RtlHardcoded")
         enable("RtlCompat")
         enable("RtlEnabled")
-        lintConfig=(file("lint.xml"))
+        lintConfig = (file("lint.xml"))
         // To enable checks for only a subset of issue IDs and ignore all others,
         // list the issue IDs with the 'check' property instead. This property overrides
         // any issue IDs you enable or disable using the properties above.
-        checkOnly("NewApi", "InlinedApi","HandlerLeak")
+        checkOnly("NewApi", "InlinedApi", "HandlerLeak")
         baseline(file("lint-baseline.xml"))
     }
 
@@ -140,6 +141,11 @@ dependencies {
     androidTestImplementation(UnitTest.JunitTest)
 //    androidTestImplementation(UnitTest.EspressoCore)
     androidTestImplementation(UnitTest.Robolectric)
+
+    //Firebase todo(uncomment this once after adding **google-service.json**)
+//    implementation(platform(Firebase.BOM))
+//    implementation(Firebase.Mssaging)
+//    implementation(Firebase.Analytics)
 
     implementation(project(":domain"))
     implementation(project(":data"))

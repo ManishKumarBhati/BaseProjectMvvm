@@ -9,6 +9,7 @@ buildscript {
     dependencies {
         classpath(Gradle.Build)
         classpath(Gradle.Kotlin)
+//        classpath(Gradle.FireBase)todo(uncomment this once after adding **google-service.json**)
         classpath(Gradle.Hilt)
         classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version")
     }
