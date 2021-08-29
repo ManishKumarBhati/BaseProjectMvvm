@@ -1,4 +1,4 @@
-package com.citiustech.baseproject.sample
+package com.citiustech.baseproject.helper
 
 object EmailValidator {
 

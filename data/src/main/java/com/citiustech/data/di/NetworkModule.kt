@@ -1,22 +1,20 @@
-package com.citiustech.data
+package com.citiustech.data.di
 
 import android.content.Context
-import android.content.SharedPreferences
 import android.util.Log
 import androidx.room.Room
-import com.citiustech.data.db.DoaService
-import com.citiustech.data.db.RoomDB
+import com.citiustech.data.ApiService
+import com.citiustech.data.doa.DoaService
+import com.citiustech.data.doa.RoomDB
+import com.citiustech.data.network.HeaderInterceptor
 import com.citiustech.data.network.SSLCertificatePinnerImpl
 import com.citiustech.data.util.BASE_URL
 import com.citiustech.data.util.DB_NAME
-import com.citiustech.data.util.Encryptor
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
-import net.sqlcipher.database.SQLiteDatabase
-import net.sqlcipher.database.SupportFactory
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -39,10 +37,12 @@ object NetworkModule {
     @Singleton
     fun provideOkHttpClient(
         logger: HttpLoggingInterceptor,
+        headerInterceptor: HeaderInterceptor
     ): OkHttpClient {
         return OkHttpClient.Builder()
             .readTimeout(30, TimeUnit.SECONDS)
             .connectTimeout(30, TimeUnit.SECONDS)
+            .addInterceptor(headerInterceptor)
             .certificatePinner(SSLCertificatePinnerImpl.getPinner())
             .addInterceptor(logger)
             .build()
@@ -67,12 +67,8 @@ object NetworkModule {
 
     @Provides
     @Singleton
-    fun provideAppDatabase(@ApplicationContext context: Context, prefs: SharedPreferences): RoomDB {
-        val hook = Encryptor(context, prefs).getCharKey("Test".toCharArray())
-        val byte = SQLiteDatabase.getBytes("Test".toCharArray())
-        val factory = SupportFactory(byte)
+    fun provideAppDatabase(@ApplicationContext context: Context): RoomDB {
         return Room.databaseBuilder(context, RoomDB::class.java, DB_NAME)
-            .openHelperFactory(factory)
             .fallbackToDestructiveMigration()
             .build()
     }

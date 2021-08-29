@@ -6,7 +6,7 @@
     app:startDestination="@id/frg_sample">
     <fragment
         android:id="@+id/frg_sample"
-        android:name="com.citiustech.baseproject.sample.SampleFragment"
+        android:name="com.citiustech.baseproject.fragment.SampleFragment"
         android:label="sample"
         tools:layout="@layout/fragment_sample">
         <action
@@ -15,7 +15,7 @@
     </fragment>
     <fragment
         android:id="@+id/secondSampleFragment"
-        android:name="com.citiustech.baseproject.SecondSampleFragment"
+        android:name="com.citiustech.baseproject.fragment.SecondSampleFragment"
         android:label="fragment_second_sample"
         tools:layout="@layout/fragment_second_sample">
         <action

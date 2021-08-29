@@ -3,8 +3,19 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="text_label_nav">nav</string>
-    <string name="text_label_first_text">Load Data in Local</string>
-    <string name="text_label_second_text">Fetch Data from Local</string>
+    <string name="text_label_first_text">Load Data</string>
+    <string name="text_label_second_text">Fetch Data</string>
     <string name="text_label_change_lang">भाषा बदलें</string>
     <string name="text_label_nav_back">Back to Home Screen</string>
+    <string name="button_text_login">Login</string>
+    <string name="error_msg_network">No Internet Connection! please connect to internet</string>
+    <string name="error_msg_common">Opps! Some thing went wrong</string>
+    <string name="msg_biometric_login">Biometric login for my app</string>
+    <string name="msg_biometric_login_credential">Log in using your biometric credential</string>
+    <string name="btn_use_ac_password">Use account password</string>
+    <string name="msg_auth_success">Authentication Succeeded!</string>
+    <string name="msg_auth_fail">Authentication Failed</string>
+    <string name="msg_auth_biometric_support">App can authenticate using biometrics.</string>
+    <string name="msg_auth_biometric_unsupported">No biometric features available on this device.</string>
+    <string name="msg_auth_biometric_unavailable">Biometric features are currently unavailable.</string>
 </resources>

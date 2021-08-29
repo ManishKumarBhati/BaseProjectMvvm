@@ -18,6 +18,8 @@ object Version {
     const val LifeCycle = "2.4.0-alpha02"
     const val Navigation = "2.3.5"
     const val Glide = "4.12.0"
+    const val Biometric = "1.2.0-alpha03"
+    const val WorkManager = "2.5.0"
 }
 
 object Dependencies {
@@ -27,6 +29,7 @@ object Dependencies {
     val Timber = "com.jakewharton.timber:timber:${Version.Timber}"
     val Stetho = "com.facebook.stetho:stetho:1.5.1"
     val Gson = "com.google.code.gson:gson:2.8.5"
+    val WorkManager = "androidx.work:work-runtime-ktx:${Version.WorkManager}"
 }
 
 object LifeCycle {
@@ -55,8 +58,10 @@ object UnitTest {
 object Gradle {
     val Build = "com.android.tools.build:gradle:${Version.BuildGradle}"
     val Kotlin = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Version.KotlinVersion}"
-    val FireBase = "com.google.gms:google-services:4.3.8"
+    val GoogleService = "com.google.gms:google-services:4.3.8"
     val Hilt = "com.google.dagger:hilt-android-gradle-plugin:${Version.Hilt}"
+    val Firebase = "com.google.firebase:firebase-crashlytics-gradle:2.7.1"
+
 }
 
 object Hilt {
@@ -116,8 +121,13 @@ object Navigation {
     const val Ui = "androidx.navigation:navigation-ui-ktx:${Version.Navigation}"
 }
 
+object Authenticate {
+    const val Biometric = "androidx.biometric:biometric:${Version.Biometric}"
+}
+
 object Firebase {
     const val BOM = "com.google.firebase:firebase-bom:28.3.0"
     const val Mssaging = "com.google.firebase:firebase-messaging-ktx"
     const val Analytics = "com.google.firebase:firebase-analytics-ktx"
+    const val Crashlytics = "com.google.firebase:firebase-crashlytics-ktx"
 }

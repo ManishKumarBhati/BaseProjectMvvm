@@ -1,4 +1,4 @@
-package com.citiustech.baseproject.util
+package com.citiustech.baseproject.helper
 
 import android.content.Context
 import android.content.ContextWrapper
@@ -8,7 +8,7 @@ import android.os.Build
 import android.os.LocaleList
 import java.util.*
 
-class ContextUtils(base: Context) : ContextWrapper(base) {
+class LocalizationWrapper(base: Context) : ContextWrapper(base) {
 
     companion object {
 
@@ -28,7 +28,7 @@ class ContextUtils(base: Context) : ContextWrapper(base) {
             } else {
                 resources.updateConfiguration(configuration, resources.displayMetrics)
             }
-            return ContextUtils(context)
+            return LocalizationWrapper(context)
         }
     }
 }

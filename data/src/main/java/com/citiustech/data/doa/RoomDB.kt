@@ -1,4 +1,4 @@
-package com.citiustech.data.db
+package com.citiustech.data.doa
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
@@ -6,6 +6,7 @@ import androidx.room.RoomDatabase
 @Database(
     entities = [TableData::class],
     version = 1, exportSchema = false
-)abstract class RoomDB : RoomDatabase() {
+)
+abstract class RoomDB : RoomDatabase() {
     abstract fun doaService(): DoaService
 }

@@ -4,6 +4,7 @@ plugins {
     id("kotlin-kapt")
     id("dagger.hilt.android.plugin")
 //    id("com.google.gms.google-services") todo(uncomment this once after adding **google-service.json**)
+//    id("com.google.firebase.crashlytics")
 }
 
 android {
@@ -96,13 +97,14 @@ dependencies {
     implementation(Androidx.Fragment)
     implementation(Androidx.Preferences)
     implementation(Dependencies.Stetho)
+    implementation(Dependencies.WorkManager)
 
     //Hilt
     implementation(Hilt.Core)
     implementation("org.jetbrains.kotlin:kotlin-stdlib:${rootProject.extra["kotlin_version"]}")
     implementation("androidx.legacy:legacy-support-v4:1.0.0")
     kapt(Hilt.Compiler)
-//    implementation(Hilt.ViewModel)
+//    implementation(Hilt.WorkManager)
     kapt(Hilt.ViewModelCompiler)
 
     //LifeCycle
@@ -127,14 +129,12 @@ dependencies {
     implementation(OkHttp.Logger)
     implementation(OkHttp.Okio)
 
-    //RxJava
-    implementation(RxJava.Java)
-    implementation(RxJava.Kotlin)
-    implementation(RxJava.Android)
 
     //Navigation
     implementation(Navigation.Fragment)
     implementation(Navigation.Ui)
+
+    implementation(Authenticate.Biometric)
 
     //UnitTest
     testImplementation(UnitTest.Junit)
@@ -146,6 +146,7 @@ dependencies {
 //    implementation(platform(Firebase.BOM))
 //    implementation(Firebase.Mssaging)
 //    implementation(Firebase.Analytics)
+//    implementation(Firebase.Crashlytics)
 
     implementation(project(":domain"))
     implementation(project(":data"))

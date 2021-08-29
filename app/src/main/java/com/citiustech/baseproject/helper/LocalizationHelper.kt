@@ -1,9 +1,9 @@
-package com.citiustech.baseproject.util
+package com.citiustech.baseproject.helper
 
 import android.content.Context
 import android.content.SharedPreferences
 
-class PreferenceManager(context: Context) {
+class LocalizationHelper(context: Context) {
     private var preferences: SharedPreferences =
         context.getSharedPreferences(Localization, Context.MODE_PRIVATE)
 

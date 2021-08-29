@@ -1,12 +1,11 @@
-package com.citiustech.baseproject.sample
+package com.citiustech.baseproject.viewmodel
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.citiustech.baseproject.util.Data
 import com.citiustech.baseproject.util.Status
 import com.citiustech.domain.Repository
+import com.citiustech.domain.Response
 import com.citiustech.domain.Result
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -16,18 +15,10 @@ import javax.inject.Inject
 
 @HiltViewModel
 class SampleViewModel @Inject constructor(private val repository: Repository) :
-    ViewModel() {
-    private var mutableMainState: MutableLiveData<Data<*>> = MutableLiveData()
-    val mainState: LiveData<Data<*>>
-        get() {
-            return mutableMainState
-        }
+    BaseViewModel() {
 
-    init {
-//        getData()
-    }
-
-    fun getData(): MutableLiveData<Data<*>> {
+    fun getData(): MutableLiveData<Data<Response>> {
+        val mutableMainState = MutableLiveData<Data<Response>>()
         viewModelScope.launch {
             val id = (1..9).random().toString()
 
@@ -49,5 +40,7 @@ class SampleViewModel @Inject constructor(private val repository: Repository) :
     fun updateData(id: Int, title: String) = viewModelScope.launch { repository.update(id, title) }
     fun delete(id: Int) = viewModelScope.launch { repository.delete(id) }
     fun getLocalData() = repository.getLocalData((1..9).random().toString())
-
+    override fun onCleared() {
+        TODO("Not yet implemented")
+    }
 }

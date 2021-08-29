@@ -1,6 +1,6 @@
 package com.citiustech.baseproject
 
-import com.citiustech.baseproject.sample.EmailValidator
+import com.citiustech.baseproject.helper.EmailValidator
 import org.junit.Assert.*
 import org.junit.Test
 

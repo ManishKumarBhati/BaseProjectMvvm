@@ -1,5 +1,6 @@
-package com.citiustech.data
+package com.citiustech.data.di
 
+import com.citiustech.data.repository.RepositoryImpl
 import com.citiustech.domain.Repository
 import dagger.Binds
 import dagger.Module

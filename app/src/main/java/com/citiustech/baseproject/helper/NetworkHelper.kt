@@ -1,4 +1,4 @@
-package com.citiustech.baseproject.util
+package com.citiustech.baseproject.helper
 
 import android.content.Context
 import android.content.Context.CONNECTIVITY_SERVICE
@@ -6,20 +6,17 @@ import android.net.ConnectivityManager
 import android.net.Network
 import android.net.NetworkCapabilities.NET_CAPABILITY_INTERNET
 import android.net.NetworkRequest
-import android.util.Log
 import androidx.lifecycle.LiveData
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import timber.log.Timber
 import java.io.IOException
 import java.net.InetSocketAddress
 import javax.inject.Inject
 import javax.net.SocketFactory
-
-val TAG = "C-Manager"
-
 
 class NetworkHelper @Inject constructor(@ApplicationContext private val context: Context) :
     LiveData<Boolean>() {
@@ -47,17 +44,17 @@ class NetworkHelper @Inject constructor(@ApplicationContext private val context:
 
     private fun createNetworkCallback() = object : ConnectivityManager.NetworkCallback() {
         override fun onAvailable(network: Network) {
-            Log.d(TAG, "onAvailable: ${network}")
+            Timber.d("onAvailable: $network")
             val networkCapabilities = cm.getNetworkCapabilities(network)
             val hasInternetCapability = networkCapabilities?.hasCapability(NET_CAPABILITY_INTERNET)
-            Log.d(TAG, "onAvailable: ${network}, $hasInternetCapability")
+            Timber.d("onAvailable: ${network}, $hasInternetCapability")
             if (hasInternetCapability == true) {
                 // check if this network actually has internet
                 CoroutineScope(Dispatchers.IO).launch {
                     val hasInternet = DoesNetworkHaveInternet.execute(network.socketFactory)
                     if (hasInternet) {
                         withContext(Dispatchers.Main) {
-                            Log.d(TAG, "onAvailable: adding network. ${network}")
+                            Timber.d("onAvailable: adding network. $network")
                             validNetworks.add(network)
                             checkValidNetworks()
                         }
@@ -67,7 +64,7 @@ class NetworkHelper @Inject constructor(@ApplicationContext private val context:
         }
 
         override fun onLost(network: Network) {
-            Log.d(TAG, "onLost: ${network}")
+            Timber.d("onLost: $network")
             validNetworks.remove(network)
             checkValidNetworks()
         }
@@ -81,14 +78,14 @@ object DoesNetworkHaveInternet {
     // Make sure to execute this on a background thread.
     fun execute(socketFactory: SocketFactory): Boolean {
         return try {
-            Log.d(TAG, "PINGING google.")
+            Timber.d("PINGING google.")
             val socket = socketFactory.createSocket() ?: throw IOException("Socket is null.")
             socket.connect(InetSocketAddress("8.8.8.8", 53), 1500)
             socket.close()
-            Log.d(TAG, "PING success.")
+            Timber.d("PING success.")
             true
         } catch (e: IOException) {
-            Log.e(TAG, "No internet connection. ${e}")
+            Timber.e("No internet connection. $e")
             false
         }
     }

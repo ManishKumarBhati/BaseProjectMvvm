@@ -1,6 +1,7 @@
 package com.citiustech.baseproject
 
-import com.citiustech.baseproject.sample.SampleFragment
+import com.citiustech.baseproject.activity.MainActivity
+import com.citiustech.baseproject.fragment.SampleFragment
 import junit.framework.Assert.assertNotNull
 import org.hamcrest.CoreMatchers.equalTo
 import org.hamcrest.MatcherAssert.assertThat

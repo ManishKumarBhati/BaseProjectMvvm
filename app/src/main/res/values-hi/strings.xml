@@ -3,8 +3,8 @@
     <string name="app_name">BaseProject</string>
     <string name="hello_blank_fragment">Hellow Blank Fragment</string>
     <string name="text_label_nav">एनएवी</string>
-    <string name="text_label_first_text">स्थानीय में डेटा लोड करें</string>
-    <string name="text_label_second_text">स्थानीय से डेटा प्राप्त करें</string>
+    <string name="text_label_first_text">लोड डेटा </string>
+    <string name="text_label_second_text">प्राप्त डेटा</string>
     <string name="text_label_change_lang">change language</string>
     <string name="text_label_nav_back">होम स्क्रीन पर वापस जाएं</string>
 

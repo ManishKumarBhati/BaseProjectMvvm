@@ -1,4 +1,4 @@
-package com.citiustech.baseproject.util
+package com.citiustech.baseproject.services
 
 //import com.google.firebase.messaging.FirebaseMessagingService
 //import com.google.firebase.messaging.RemoteMessage
