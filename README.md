@@ -1,4 +1,4 @@
-# Citius Tech Android Base Project
+#Android Base Project
 
 # Kotlin MVVM app using clean architecture, Jetpack, Hilt, Retrofit, Moshi, Room, Glide and Coroutines.
 
