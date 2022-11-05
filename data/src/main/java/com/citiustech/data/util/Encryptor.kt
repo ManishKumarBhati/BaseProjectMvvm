@@ -100,7 +100,7 @@ class Encryptor(val context: Context, val prefs: SharedPreferences) {
             val secret: SecretKey = generateSecretKey(salt)
 
             // Now encrypt the database key with PBE(Passcode Base Encryption)
-            val cipher: Cipher = Cipher.getInstance(ENC_TYPE)
+            val cipher: Cipher = Cipher.getInstance("ENC_TYPE")
             cipher.init(Cipher.ENCRYPT_MODE, secret)
             val params: AlgorithmParameters = cipher.parameters
 
@@ -129,7 +129,7 @@ class Encryptor(val context: Context, val prefs: SharedPreferences) {
 
 
     private fun getStorable(): KeyData? {
-        val data = prefs.getString(PREF_ENCRYPT_KEY, null)
+        val data = prefs.getString("PREF_ENCRYPT_KEY", null)
         if (data.isNullOrBlank()) {
             return null
         }
@@ -146,7 +146,7 @@ class Encryptor(val context: Context, val prefs: SharedPreferences) {
         val iv = Base64.decode(keyData.iv, Base64.DEFAULT)
         val salt = Base64.decode(keyData.salt, Base64.DEFAULT)
         val secret: SecretKey = generateSecretKey(salt)
-        val cipher = Cipher.getInstance(ENC_TYPE)
+        val cipher = Cipher.getInstance("ENC_TYPE")
         cipher.init(Cipher.DECRYPT_MODE, secret, IvParameterSpec(iv))
         return cipher.doFinal(aesWrappedKey)
     }

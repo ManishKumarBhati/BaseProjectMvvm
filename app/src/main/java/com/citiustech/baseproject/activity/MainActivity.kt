@@ -68,9 +68,9 @@ class MainActivity : BaseActivity(), Helper {
 
 
     private fun networkCheck() {
-        networkHelper.observe(this, {
+        networkHelper.observe(this) {
             if (!it) showShortToast(getString(R.string.error_msg_network))
-        })
+        }
 
     }
 

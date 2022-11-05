@@ -1,6 +1,6 @@
 object Version {
-    const val CompileSdk = 30
-    const val TargetSdk = 30
+    const val CompileSdk = 31
+    const val TargetSdk = 31
     const val MinSdk = 23
     const val VersionCode = 1
     const val VersionName = "1.0.0"
@@ -10,7 +10,7 @@ object Version {
     const val Timber = "4.7.1"
     const val Hilt = "2.35"
     const val Retrofit = "2.6.0"
-    const val Room = "2.3.0"
+    const val Room = "2.4.3"
     const val OkHttp = "3.12.3"
     const val OkIo = "1.17.4"
     const val RxBinding = "4.0.0"
@@ -19,7 +19,7 @@ object Version {
     const val Navigation = "2.3.5"
     const val Glide = "4.12.0"
     const val Biometric = "1.2.0-alpha03"
-    const val WorkManager = "2.5.0"
+    const val WorkManager = "2.7.0"
 }
 
 object Dependencies {
