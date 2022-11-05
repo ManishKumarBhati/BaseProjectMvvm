@@ -49,8 +49,8 @@
 -keepnames class * extends android.os.Parcelable
 -keepnames class * extends java.io.Serializable
 -keepnames class androidx.navigation.fragment.NavHostFragment
--keep class com.citiustech.domain.models.** { *; }
--keep class com.citiustech.data.models.** { *; }
+-keep class com.bmk.domain.models.** { *; }
+-keep class com.bmk.data.models.** { *; }
 
 #glide
 -keep public class * implements com.bumptech.glide.module.GlideModule
