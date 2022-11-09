@@ -10,23 +10,23 @@ plugins {
 android {
     signingConfigs {
         getByName("debug") {
-            storeFile = file("..\\citiustechkey.jks")
-            storePassword = "Healthcare"
-            keyAlias = "Healthcare"
-            keyPassword = "Healthcare"
+            storeFile = file("..\\manishbhati.jks")
+            storePassword = "manish"
+            keyAlias = "manish"
+            keyPassword = "manish"
         }
         create("release") {
-            storeFile = file(".\\citiustechkey.jks")
-            storePassword = "Healthcare"
-            keyAlias = "Healthcare"
-            keyPassword = "Healthcare"
+            storeFile = file(".\\manishbhati.jks")
+            storePassword = "manish"
+            keyAlias = "manish"
+            keyPassword = "manish"
         }
     }
     compileSdkVersion(Version.CompileSdk)
     buildToolsVersion = Version.BuildToolsVersion
 
     defaultConfig {
-        applicationId = "com.citiustech.baseproject"
+        applicationId = "com.bmk.baseproject"
         minSdkVersion(Version.MinSdk)
         targetSdkVersion(Version.TargetSdk)
         versionCode = Version.VersionCode

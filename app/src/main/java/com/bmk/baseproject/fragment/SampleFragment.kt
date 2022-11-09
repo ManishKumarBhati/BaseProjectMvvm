@@ -122,8 +122,8 @@ class SampleFragment : BaseFragment() {
     fun getTitle() = binding.etTitle.text.toString().trim()
 
     private fun setSharedPref() {
-        sharedPreferences.edit().putString("citiustech", "test").apply()
-        val d = sharedPreferences.getString("citiustech", "manish")
+        sharedPreferences.edit().putString("manishid", "test").apply()
+        val d = sharedPreferences.getString("manishid", "manish")
         Timber.d("bmk $d")
     }
 
