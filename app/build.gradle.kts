@@ -97,14 +97,13 @@ dependencies {
     implementation(Androidx.Fragment)
     implementation(Androidx.Preferences)
     implementation(Dependencies.Stetho)
-    implementation(Dependencies.WorkManager)
 
     //Hilt
     implementation(Hilt.Core)
     implementation("org.jetbrains.kotlin:kotlin-stdlib:${rootProject.extra["kotlin_version"]}")
     implementation("androidx.legacy:legacy-support-v4:1.0.0")
     kapt(Hilt.Compiler)
-//    implementation(Hilt.WorkManager)
+
     kapt(Hilt.ViewModelCompiler)
 
     //LifeCycle
@@ -115,7 +114,6 @@ dependencies {
 
     //Room
     implementation(Room.Core)
-//    implementation(Room.RxJava)
     implementation(Room.CoreKtx)
     kapt(Room.Compiler)
 

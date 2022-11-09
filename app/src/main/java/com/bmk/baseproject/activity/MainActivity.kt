@@ -2,27 +2,13 @@ package com.bmk.baseproject.activity
 
 import android.os.Bundle
 import android.view.View
-import androidx.lifecycle.lifecycleScope
-import androidx.work.Constraints
-import androidx.work.NetworkType
-import androidx.work.OneTimeWorkRequestBuilder
-import androidx.work.WorkManager
 import com.bmk.baseproject.R
 import com.bmk.baseproject.databinding.ActivityMainBinding
 import com.bmk.baseproject.helper.Helper
 import com.bmk.baseproject.helper.NetworkHelper
-import com.bmk.baseproject.helper.WorkManagerTag
-import com.bmk.baseproject.services.MyWorkManager
 import com.bmk.data.network.SessionManager
 import com.bmk.domain.Repository
-import com.bmk.domain.Result
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
-import timber.log.Timber
-import java.util.*
-import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -42,27 +28,7 @@ class MainActivity : BaseActivity(), Helper {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        test()
-        isRefreshRequired()
         networkCheck()
-        calculateArea(5)
-    }
-
-    private fun test() {
-        val constrain = Constraints.Builder()
-            .setRequiredNetworkType(NetworkType.CONNECTED)
-            .setRequiresCharging(true)
-
-        val timeDiff = 1629805020000 - Date().time
-
-        val dailyWorkRequest = OneTimeWorkRequestBuilder<MyWorkManager>()
-            .setInitialDelay(timeDiff, TimeUnit.MILLISECONDS)
-            .setConstraints(constrain.build())
-            .addTag(WorkManagerTag)
-            .build()
-
-        WorkManager.getInstance(application)
-            .enqueue(dailyWorkRequest)
 
     }
 
@@ -72,24 +38,6 @@ class MainActivity : BaseActivity(), Helper {
             if (!it) showShortToast(getString(R.string.error_msg_network))
         }
 
-    }
-
-    private fun isRefreshRequired() {
-        if (sessionManager.getRefreshToken() <= Date().time) {
-            lifecycleScope.launch {
-                when (val result =
-                    withContext(Dispatchers.IO) { repository.refresh() }) {
-                    is Result.Failure -> {
-                        showError(result.exception.localizedMessage)
-                    }
-                    is Result.Success -> Timber.d("${result.data}")
-                }
-            }
-        }
-    }
-
-    fun calculateArea(radius: Int): Double {
-        return Math.PI * radius * radius
     }
 
     override fun toggleProgress(show: Boolean) {
