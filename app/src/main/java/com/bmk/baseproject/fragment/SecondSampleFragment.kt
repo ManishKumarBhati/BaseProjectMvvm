@@ -6,6 +6,7 @@ import androidx.navigation.fragment.findNavController
 import com.bmk.baseproject.R
 import com.bmk.baseproject.databinding.FragmentSecondSampleBinding
 import com.bmk.baseproject.util.showNotification
+import com.bmk.domain.UserDetails
 import timber.log.Timber
 
 class SecondSampleFragment : BaseFragment() {
@@ -16,7 +17,9 @@ class SecondSampleFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         binding = FragmentSecondSampleBinding.bind(view)
         arguments?.let {
-            Timber.d(it.getString("bmk"))
+            it.getParcelable<UserDetails>(ARGS_USER_DATA)?.let { response ->
+                Timber.d("bmk $response")
+            }
         }
         binding.btnHome.setOnClickListener {
             findNavController().navigate(R.id.nav_to_first_frag)
@@ -25,6 +28,10 @@ class SecondSampleFragment : BaseFragment() {
             requireContext().showNotification("this is a title", "this is a Body")
         }
 
+    }
+
+    companion object {
+        const val ARGS_USER_DATA = "user_data"
     }
 
 }

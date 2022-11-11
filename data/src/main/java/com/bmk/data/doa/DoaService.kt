@@ -7,23 +7,27 @@ import com.bmk.data.util.TABLE_NAME
 @Entity(tableName = TABLE_NAME)
 data class TableData(
     @PrimaryKey @JvmField val id: Int,
-    @JvmField val completed: Boolean,
-    @JvmField val title: String,
-    @JvmField val userId: Int
+    @JvmField val email: String,
+    @JvmField val firstName: String,
+    @JvmField val lastName: String,
+    @JvmField val avatar: String
 )
 
 @Dao
 interface DoaService {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertAll(data: TableData)
+    fun insertAll(data: List<TableData>)
 
     @Query("SELECT * FROM $TABLE_NAME order by id desc LIMIT 1")
-    fun getData(): LiveData<TableData>
+    fun getUserDetails(): LiveData<TableData>
 
-    @Query("update $TABLE_NAME set title=:ptitle where id =:pid")
-    suspend fun update(pid: Int, ptitle: String)
+ @Query("SELECT * FROM $TABLE_NAME")
+    fun getAllUserDetails(): LiveData<List<TableData>>
 
-    @Query("delete from $TABLE_NAME where id =:pid")
-    suspend fun delete(pid: Int)
+    @Query("update $TABLE_NAME set firstName=:name where id =:id")
+    suspend fun update(id: Int, name: String)
+
+    @Query("delete from $TABLE_NAME where id =:id")
+    suspend fun delete(id: Int)
 
 }

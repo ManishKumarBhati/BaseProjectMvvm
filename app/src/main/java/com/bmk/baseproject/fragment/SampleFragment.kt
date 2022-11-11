@@ -1,22 +1,20 @@
 package com.bmk.baseproject.fragment
 
 import android.content.SharedPreferences
-import android.os.Build
 import android.os.Bundle
 import android.view.View
-import androidx.annotation.RequiresApi
-import androidx.biometric.BiometricPrompt
-import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.bmk.baseproject.R
 import com.bmk.baseproject.databinding.FragmentSampleBinding
 import com.bmk.baseproject.helper.Helper
-import com.bmk.baseproject.util.Status
+import com.bmk.baseproject.util.ResponseState
+import com.bmk.baseproject.util.isOnline
 import com.bmk.baseproject.viewmodel.SampleViewModel
 import com.bmk.domain.Repository
+import com.bmk.domain.UserDetails
 import dagger.hilt.android.AndroidEntryPoint
-import java.util.concurrent.Executor
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -30,9 +28,6 @@ class SampleFragment : BaseFragment() {
     lateinit var repository: Repository
 
     private val viewModel: SampleViewModel by viewModels()
-    private lateinit var executor: Executor
-    private lateinit var biometricPrompt: BiometricPrompt
-    private lateinit var promptInfo: BiometricPrompt.PromptInfo
 
     @Inject
     lateinit var helper: Helper
@@ -40,62 +35,33 @@ class SampleFragment : BaseFragment() {
         return R.layout.fragment_sample
     }
 
-    @RequiresApi(Build.VERSION_CODES.R)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         binding = FragmentSampleBinding.bind(view)
-
-        binding.btnLoad.setOnClickListener {
-            viewModel.getData().observe(viewLifecycleOwner) {
-                when (it.responseType) {
-                    Status.ERROR -> it.error?.message?.let { helper.showError(it) }
-                    Status.LOADING -> helper.showProgress()
-                    Status.SUCCESSFUL -> it.data?.let { data ->
-                        helper.hideProgress()
-                        showToast("data loaded for id ${data.id}")
-                    }
-                }
-            }
-        }
-        binding.btnDelete.setOnClickListener {
-            if (getID().isNotEmpty()) viewModel.delete(getID().toInt())
-            else showToast("no id available")
-        }
-        binding.btnUpdate.setOnClickListener {
-            if (getID() != "") viewModel.updateData(getID().toInt(), getTitle())
-            else showToast("no id available")
-        }
-        binding.btnFetch.setOnClickListener {
-            viewModel.getLocalData().observe(viewLifecycleOwner) {
-                binding.apply {
-                    if (it.id > 0) {
-                        tvId.text = "id:${it.id}"
-                        tvStaus.text = "status:${it.completed}"
-                        etId.setText("${it.id}")
-                        tvTitle.text = "title:${it.title}"
-                    } else {
-                        tvId.text = ""
-                        etId.setText("")
-                        tvStaus.text = "${it.title}"
-                        tvTitle.text = ""
-                    }
-                }
+        if (context?.isOnline() == true) viewModel.getData() else viewModel.getAllUser()
+        viewModel.mutableMainState.observe(viewLifecycleOwner) {
+            helper.toggleProgress(it is ResponseState.Loading)
+            when (it) {
+                is ResponseState.Error -> helper.showError(it.throwable)
+                is ResponseState.Success -> setUpRecyclerView(it.data)
+                else -> {}
             }
         }
 
-        binding.btnLocal.setOnClickListener {
-            activity?.recreate()
-        }
-        binding.btnNav.setOnClickListener {
 
-            findNavController().navigate(
-                R.id.nav_to_second_frag,
-                bundleOf("bmk" to "Manish")
-            )
+    }
+
+    private fun setUpRecyclerView(userDetails: List<UserDetails>) {
+        binding.rvList.apply {
+            adapter = UserAdapter(userDetails, ::setOnClickListener)
+            layoutManager = LinearLayoutManager(context)
         }
     }
 
-    fun getID() = binding.etId.text.toString().trim()
-    fun getTitle() = binding.etTitle.text.toString().trim()
+    fun setOnClickListener(userDetails: UserDetails) {
+        val bundle = Bundle()
+        bundle.putParcelable(SecondSampleFragment.ARGS_USER_DATA, userDetails)
+        findNavController().navigate(R.id.nav_to_second_frag, bundle)
 
+    }
 
 }

@@ -70,10 +70,5 @@ dependencies {
     implementation(OkHttp.Logger)
     implementation(OkHttp.Okio)
 
-    //RxJava
-    implementation(RxJava.Java)
-    implementation(RxJava.Kotlin)
-    implementation(RxJava.Android)
-
     implementation(project(":domain"))
 }

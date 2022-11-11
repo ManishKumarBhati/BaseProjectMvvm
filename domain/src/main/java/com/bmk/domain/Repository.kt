@@ -1,25 +1,25 @@
 package com.bmk.domain
 
+import android.os.Parcelable
 import androidx.lifecycle.LiveData
+import kotlinx.android.parcel.Parcelize
 
 interface Repository {
-    suspend fun getData(id: String): Result<Response>
-    fun getLocalData(id: String): LiveData<Response>
-    suspend fun update(id: Int, title: String)
+    suspend fun getData(id: String): Result<List<UserDetails>>
+    fun getUser(id: String): LiveData<Result<UserDetails>>
+    fun getAllUserDetails(): LiveData<List<UserDetails>>
+    suspend fun update(id: Int, name: String)
     suspend fun delete(id: Int)
-    suspend fun login(id: String, password: String): Result<LoginDataResponse>
-    suspend fun refresh(): Result<LoginDataResponse>
 
 }
 
-data class Response(
+@Parcelize
+data class UserDetails(
     @JvmField val id: Int,
-    @JvmField val completed: Boolean,
-    @JvmField val title: String,
-    @JvmField val userId: Int
-)
-
-data class LoginDataResponse(
-    @JvmField val accessToken: String,
-    @JvmField val refreshTime: Long,
-)
+    @JvmField val email: String,
+    @JvmField val firstName: String,
+    @JvmField val lastName: String,
+    @JvmField val avatar: String
+): Parcelable{
+    fun getFullName()="$firstName $lastName"
+}
