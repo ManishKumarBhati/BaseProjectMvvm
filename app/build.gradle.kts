@@ -95,7 +95,6 @@ dependencies {
     implementation(Dependencies.Material)
     implementation(Androidx.ConstraintLayout)
     implementation(Androidx.Fragment)
-    implementation(Androidx.Preferences)
     implementation(Dependencies.Stetho)
 
     //Hilt

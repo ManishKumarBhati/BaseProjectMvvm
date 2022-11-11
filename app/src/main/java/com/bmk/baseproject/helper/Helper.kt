@@ -5,4 +5,5 @@ interface Helper {
     fun showProgress()
     fun hideProgress()
     fun showError(throwable: Throwable)
+    fun startCounter(counter:Int)
 }

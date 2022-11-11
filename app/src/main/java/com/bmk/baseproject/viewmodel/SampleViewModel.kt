@@ -42,7 +42,5 @@ class SampleViewModel @Inject constructor(private val repository: Repository) :
 
     }
 
-    override fun onCleared() {
-        TODO("Not yet implemented")
-    }
+
 }

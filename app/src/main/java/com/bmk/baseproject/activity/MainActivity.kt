@@ -2,6 +2,7 @@ package com.bmk.baseproject.activity
 
 import android.os.Bundle
 import android.view.View
+import androidx.core.view.isVisible
 import com.bmk.baseproject.R
 import com.bmk.baseproject.databinding.ActivityMainBinding
 import com.bmk.baseproject.helper.Helper
@@ -29,6 +30,11 @@ class MainActivity : BaseActivity(), Helper {
 
     override fun hideProgress() {
         binding.progressBar.visibility = View.GONE
+    }
+
+    override fun startCounter(counter: Int) {
+        binding.tvCounter.isVisible = counter != 0
+        binding.tvCounter.text = counter.toString()
     }
 
     override fun showError(throwable: Throwable) {

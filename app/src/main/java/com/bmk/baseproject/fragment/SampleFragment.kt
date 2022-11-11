@@ -1,6 +1,5 @@
 package com.bmk.baseproject.fragment
 
-import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
@@ -20,9 +19,6 @@ import javax.inject.Inject
 @AndroidEntryPoint
 class SampleFragment : BaseFragment() {
     lateinit var binding: FragmentSampleBinding
-
-    @Inject
-    lateinit var sharedPreferences: SharedPreferences
 
     @Inject
     lateinit var repository: Repository
