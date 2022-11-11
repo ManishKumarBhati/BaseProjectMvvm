@@ -132,7 +132,9 @@ dependencies {
     implementation(Navigation.Fragment)
     implementation(Navigation.Ui)
 
-    implementation(Authenticate.Biometric)
+    //glide
+    implementation(Glide.Core)
+    kapt(Glide.Compiler)
 
     //UnitTest
     testImplementation(UnitTest.Junit)
@@ -140,11 +142,6 @@ dependencies {
 //    androidTestImplementation(UnitTest.EspressoCore)
     androidTestImplementation(UnitTest.Robolectric)
 
-    //Firebase todo(uncomment this once after adding **google-service.json**)
-//    implementation(platform(Firebase.BOM))
-//    implementation(Firebase.Mssaging)
-//    implementation(Firebase.Analytics)
-//    implementation(Firebase.Crashlytics)
 
     implementation(project(":domain"))
     implementation(project(":data"))

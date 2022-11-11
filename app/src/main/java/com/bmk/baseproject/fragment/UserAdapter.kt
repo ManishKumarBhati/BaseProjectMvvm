@@ -33,7 +33,6 @@ class UserAdapter(private val userDetails: List<UserDetails>,private val onClick
                 tvId.text = userDetails.id.toString()
                 tvEmail.text = userDetails.email
                 tvName.text = userDetails.getFullName()
-                tvCompany.text = userDetails.email
             }
         }
     }

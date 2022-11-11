@@ -2,12 +2,10 @@ package com.bmk.baseproject.fragment
 
 import android.os.Bundle
 import android.view.View
-import androidx.navigation.fragment.findNavController
 import com.bmk.baseproject.R
 import com.bmk.baseproject.databinding.FragmentSecondSampleBinding
-import com.bmk.baseproject.util.showNotification
 import com.bmk.domain.UserDetails
-import timber.log.Timber
+import com.bumptech.glide.Glide
 
 class SecondSampleFragment : BaseFragment() {
     lateinit var binding: FragmentSecondSampleBinding
@@ -18,16 +16,21 @@ class SecondSampleFragment : BaseFragment() {
         binding = FragmentSecondSampleBinding.bind(view)
         arguments?.let {
             it.getParcelable<UserDetails>(ARGS_USER_DATA)?.let { response ->
-                Timber.d("bmk $response")
+                setView(response)
             }
         }
-        binding.btnHome.setOnClickListener {
-            findNavController().navigate(R.id.nav_to_first_frag)
-        }
-        binding.btnNotify.setOnClickListener {
-            requireContext().showNotification("this is a title", "this is a Body")
-        }
 
+
+    }
+
+    private fun setView(response: UserDetails) {
+        binding.apply {
+            tvEmail.text = response.email
+            tvName.text = response.getFullName()
+            Glide.with(this.root.context)
+                .load(response.avatar)
+                .into(binding.ivAvatar)
+        }
     }
 
     companion object {
