@@ -19,6 +19,6 @@ class LocalizationHelper(context: Context) {
         const val PREF_LOCALIZATION = "localization"
         const val Hindi = "hi"
         const val English = "en"
-        const val Localization = "citius_localization"
+        const val Localization = "localization"
     }
 }

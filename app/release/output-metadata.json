@@ -4,7 +4,7 @@
     "type": "APK",
     "kind": "Directory"
   },
-  "applicationId": "com.citiustech.baseproject",
+  "applicationId": "com.bmk.baseproject",
   "variantName": "release",
   "elements": [
     {
